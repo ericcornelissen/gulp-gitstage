@@ -1,24 +1,22 @@
 {
-  "name": "gulp-gitmodified",
-  "version": "1.2.0",
+  "name": "gulp-gitstage",
+  "version": "1.0.0",
   "description": "A plugin for Gulp to get an object stream of modified files on git.",
-  "keywords": [
-    "gulpplugin",
-    "git",
-    "git modified"
-  ],
-  "homepage": "https://github.com/mikaelbr/gulp-gitmodified",
-  "bugs": "https://github.com/mikaelbr/gulp-gitmodified/issues",
-  "author": {
-    "name": "Mikael Brevik",
-    "email": "mikaelbre@gmail.com",
-    "url": "https://github.com/mikaelbr"
-  },
   "main": "./index.js",
+  "author": "Eric Cornelissen <ericornelissen@gmail.com>",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mikaelbr/gulp-gitmodified.git"
+    "url": "https://github.com/ericcornelissen/gulp-gitstage"
   },
+  "homepage": "https://github.com/ericcornelissen/gulp-gitstage",
+  "bugs": "https://github.com/ericcornelissen/gulp-gitstage/issues",
+  "keywords": [
+    "gulp plugin",
+    "git",
+    "git stage",
+    "git add"
+  ],
   "scripts": {
     "test": "mocha -R spec",
     "example": "gulp --gulpfile examples/gulpfile.js foo",
@@ -41,6 +39,5 @@
   "engines": {
     "node": ">=8.11.0",
     "npm": ">=5.6.0"
-  },
-  "license": "MIT"
+  }
 }
