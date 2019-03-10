@@ -1,100 +1,26 @@
-var through = require('through2'),
-  find = require('lodash.find'),
-  PluginError = require('plugin-error'),
-  git = require('./lib/git'),
-  path = require('path'),
-  File = require('vinyl');
+var map = require('map-stream');
+var git = require('./lib/git');
 
-module.exports = function (modes) {
-  'use strict';
-  var options = {
-    stagedOnly: false,
-  };
+var gitApp = 'git';
+var gitExtra = {env: process.env};
 
-  var files = null,
-      regexTest,
-      modeMapping = {
-    modified: 'M',
-    added: 'A',
-    deleted: 'D',
-    renamed: 'R',
-    copied: 'C',
-    updated: 'U',
-    untracked: '??',
-    ignored: '!!'
-  };
-
-  if (typeof modes === 'object' && (!!modes.modes || !!modes.gitCwd)) {
-    options = modes;
-    modes = modes.modes || [];
-  }
-  if (!Array.isArray(modes)) modes = [modes];
-
-  modes = modes.reduce(function(acc, mode) {
-    var mappedMode;
-    if (typeof mode !== 'string') return acc;
-    mappedMode = modeMapping[mode.trim().toLowerCase()] || mode;
-    return acc.concat(mappedMode.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&'));
-  }, []);
-
-  if (!modes.length) modes = ['M'];
-
-  regexTest = new RegExp('^('+modes.join('|')+')\\s', 'i');
-
-  var gitmodified = function (file, enc, callback) {
-    var stream = this;
-
-    var checkStatus = function () {
-      var isIn = !!find(files, function (fileLine) {
-        var line = path.normalize(fileLine.path);
-        if (line.substring(line.length, line.length - 1)) {
-          return file.path.indexOf(line.substring(0, line.length - 1)) !== -1;
-        }
-        return file.path.indexOf(line) !== -1;
-      });
-
-      if (isIn) {
-        setDeleted(file, false);
-        stream.push(file);
-      }
-      return callback();
-    };
-
-    if (!!files) {
-      return checkStatus();
-    }
-    git.getStatusByMatcher(regexTest, options.gitCwd, options.stagedOnly, function (err, statusFiles) {
+var scssLintPlugin = function() {
+  return map(function(file, cb) {
+    git.which(gitApp, function(err) {
       if (err) {
-        stream.emit('error', new PluginError('gulp-gitmodified', err));
-        return callback();
+        return cb(new Error('git not found on your system.'));
       }
-      files = statusFiles;
 
-      // Deleted files. Make into vinyl files
-      files.forEach(function(file) {
-        if (file.mode !== 'D') return;
-        stream.push(makeVinylFile(file.path));
+      git.exec(gitApp, ['add', file.path], gitExtra, function(err, stdout) {
+        if (err) {
+          return cb(new Error('git add failed.'));
+        }
+
+        cb(0, file);
       });
-
-      checkStatus();
-    });
-  };
-
-  return through.obj(gitmodified, function (callback) {
-    files = null;
-    return callback();
+    })
   });
 };
 
-function makeVinylFile (path) {
-  var file = new File({
-    path: path,
-    contents: null
-  });
-  setDeleted(file, true);
-  return file;
-}
-
-function setDeleted (file, isDeleted) {
-  file.isDeleted = function () { return !!isDeleted; };
-}
+// Export the plugin main function
+module.exports = scssLintPlugin;
