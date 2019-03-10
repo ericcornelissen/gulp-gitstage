@@ -1,6 +1,6 @@
 {
   "name": "gulp-gitstage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A plugin for Gulp to get an object stream of modified files on git.",
   "main": "./index.js",
   "author": "Eric Cornelissen <ericornelissen@gmail.com>",
@@ -23,6 +23,7 @@
     "lint": "jshint **/*.js"
   },
   "dependencies": {
+    "bottleneck": "^2.17.1",
     "lodash.find": "^4.6.0",
     "map-stream": "0.0.7",
     "plugin-error": "^1.0.1",
