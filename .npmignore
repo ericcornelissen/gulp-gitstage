@@ -1,0 +1,9 @@
+# configuration files
+.editorconfig
+.gitattributes
+.jshintrc
+.travis.yml
+
+# directories
+examples/*
+test/*
