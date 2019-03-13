@@ -1,15 +1,14 @@
-const path = require('path');
+const path = require("path");
 
-const git = require('../lib/git.js');
+const git = require("../lib/git.js");
 
-let files = path.join(__dirname, './fixtures/*.txt');
+let files = path.join(__dirname, "./fixtures/*.txt");
 
-test('can be used to expect commands', () => {
-  expect(git).toHaveProperty('exec');
-  expect(git.exec).toBeInstanceOf(Function);
+test("can be used to check if git is available", () => {
+  expect(git).toHaveProperty("available");
 });
 
-test('can be used to check if git is available', () => {
-  expect(git).toHaveProperty('which');
-  expect(git.which).toBeInstanceOf(Function);
+test("can be used to execute the 'git add' command", () => {
+  expect(git).toHaveProperty("stage");
+  expect(git.stage).toBeInstanceOf(Function);
 });
