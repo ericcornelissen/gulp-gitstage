@@ -1,31 +1,11 @@
 const gulp = require('gulp');
 const path = require('path');
-const map = require('map-stream');
 const which = require('which');
+
+const { reduce, verify } = require('./utils.js');
 
 const gitstage = require('../index.js');
 const git = require('../lib/git.js');
-
-function reduce() {
-  let started = false;
-  return map(function(file, callback) {
-    if (!started) {
-      callback(null, file);
-    } else {
-      callback();
-    }
-  });
-}
-function verify(done, check) {
-  if (typeof check !== 'function') {
-    throw new Error('expects a function');
-  }
-
-  return map(function(file, callback) {
-    check();
-    done();
-  });
-}
 
 let files = path.join(__dirname, './fixtures/*.txt');
 let gitCmd = 'git';
