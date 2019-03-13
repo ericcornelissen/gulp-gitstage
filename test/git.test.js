@@ -1,6 +1,6 @@
 const path = require("path");
 
-const git = require("../lib/git.js");
+const git = require("../src/git.js");
 
 let files = path.join(__dirname, "./fixtures/*.txt");
 
