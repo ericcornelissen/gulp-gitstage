@@ -1,25 +1,21 @@
-var map = require('map-stream');
-var git = require('./lib/git');
+const map = require('map-stream');
+const git = require('./lib/git');
 
-var gitExtra = {env: process.env};
+const defaultOptions = { env: process.env };
 
-var scssLintPlugin = function() {
-  return map(function(file, cb) {
-    git.which(function(err) {
-      if (err) {
-        return cb(new Error('git not found on your system.'));
+module.exports = function() {
+  return map(function(file, callback) {
+    let available = git.checkAvailable();
+    if (!available) {
+      return callback(new Error('git not found on your system.'));
+    }
+
+    git.exec(['add', file.path], defaultOptions, (error, stdout) => {
+      if (error) {
+        return callback(new Error('git add failed.'));
       }
 
-      git.exec(['add', file.path], gitExtra, function(err, stdout) {
-        if (err) {
-          return cb(new Error('git add failed.'));
-        }
-
-        cb(0, file);
-      });
-    })
+      callback(0, file);
+    });
   });
 };
-
-// Export the plugin main function
-module.exports = scssLintPlugin;
