@@ -1,8 +1,9 @@
 # configuration files
 .editorconfig
 .gitattributes
-.jshintrc
+.prettierrc
 .travis.yml
+jest.config.js
 
 # directories
 test/*
