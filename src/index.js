@@ -1,5 +1,5 @@
 const map = require("map-stream");
-const git = require("./lib/git");
+const git = require("./git");
 
 const defaultOptions = { env: process.env };
 

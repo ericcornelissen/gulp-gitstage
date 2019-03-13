@@ -4,8 +4,8 @@ const which = require("which");
 
 const { reduce, verify } = require("./utils.js");
 
-const gitstage = require("../index.js");
-const git = require("../lib/git.js");
+const gitstage = require("../src/index.js");
+const git = require("../src/git.js");
 
 let files = path.join(__dirname, "./fixtures/*.txt");
 
