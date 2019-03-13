@@ -1,4 +1,4 @@
-const map = require('map-stream');
+const map = require("map-stream");
 
 module.exports = {
   reduce: function() {
@@ -13,13 +13,13 @@ module.exports = {
   },
 
   verify: function(done, check) {
-    if (typeof check !== 'function') {
-      throw new Error('expects a function');
+    if (typeof check !== "function") {
+      throw new Error("expects a function");
     }
 
     return map(function(file, callback) {
       check();
       done();
     });
-  }
-}
+  },
+};
