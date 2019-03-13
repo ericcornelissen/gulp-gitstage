@@ -19,7 +19,6 @@
   ],
   "scripts": {
     "test": "jest",
-    "example": "gulp --gulpfile examples/gulpfile.js foo",
     "prettier": "prettier **/*.js --write"
   },
   "dependencies": {

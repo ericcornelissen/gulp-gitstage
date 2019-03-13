@@ -5,5 +5,4 @@
 .travis.yml
 
 # directories
-examples/*
 test/*
