@@ -8,17 +8,6 @@ const gitstage = require('../index.js');
 const git = require('../lib/git.js');
 
 let files = path.join(__dirname, './fixtures/*.txt');
-let gitCmd = 'git';
-
-beforeAll(done => {
-  which(gitCmd, error => {
-    if (error) {
-      throw new Error('git must be available before tests can be ran');
-    }
-
-    done();
-  })
-});
 
 test('returns a stream', () => {
   const result = gitstage();
