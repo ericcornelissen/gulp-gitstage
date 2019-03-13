@@ -1,4 +1,5 @@
-.DS_Store
 node_modules/
-temp/
+
+# generated files
+.DS_Store
 npm-debug.log
