@@ -1,6 +1,7 @@
 # gulp-gitstage
 
 [![NPM version][npm-image]][npm-url]
+[![License][license-image]][license-url]
 
 > plugin for [gulp](https://github.com/gulpjs/gulp) to stage files with git
 
@@ -49,9 +50,8 @@ gulp
   .pipe(gitmodified("A"));
 ```
 
-## License
-
-[MIT License](http://en.wikipedia.org/wiki/MIT_License)
-
 [npm-url]: https://npmjs.org/package/gulp-gitstage
 [npm-image]: https://badge.fury.io/js/gulp-gitstage.png
+
+[license-url]: https://opensource.org/licenses/MIT
+[license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
