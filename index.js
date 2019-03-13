@@ -5,8 +5,7 @@ const defaultOptions = { env: process.env };
 
 module.exports = function() {
   return map(function(file, callback) {
-    let available = git.checkAvailable();
-    if (!available) {
+    if (!git.available) {
       return callback(new Error('git not found on your system.'));
     }
 

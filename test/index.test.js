@@ -15,18 +15,6 @@ test('returns a stream', () => {
   expect(result).toHaveProperty('write');
 });
 
-test('checks if git is available', done => {
-  const spy = jest.spyOn(git, 'checkAvailable');
-
-  gulp.src(files)
-      .pipe(gitstage())
-      .pipe(reduce())
-      .pipe(verify(done, () => {
-        expect(spy).toHaveBeenCalled();
-        spy.mockRestore();
-      }));
-});
-
 test('stages a file on git', done => {
   const spy = jest.spyOn(git, 'stage');
 
