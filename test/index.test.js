@@ -27,8 +27,8 @@ test('checks if git is available', done => {
       }));
 });
 
-test('executes a git command', done => {
-  const spy = jest.spyOn(git, 'exec');
+test('stages a file on git', done => {
+  const spy = jest.spyOn(git, 'stage');
 
   gulp.src(files)
       .pipe(gitstage())

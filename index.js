@@ -10,7 +10,7 @@ module.exports = function() {
       return callback(new Error('git not found on your system.'));
     }
 
-    git.exec(['add', file.path], defaultOptions, (error, stdout) => {
+    git.stage(file.path, defaultOptions, error => {
       if (error) {
         return callback(new Error('git add failed.'));
       }

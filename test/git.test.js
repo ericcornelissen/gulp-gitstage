@@ -9,7 +9,7 @@ test('can be used to check if git is available', () => {
   expect(git.checkAvailable).toBeInstanceOf(Function);
 });
 
-test('can be used to expect commands', () => {
-  expect(git).toHaveProperty('exec');
-  expect(git.exec).toBeInstanceOf(Function);
+test('can be used to execute the \'git add\' command', () => {
+  expect(git).toHaveProperty('stage');
+  expect(git.stage).toBeInstanceOf(Function);
 });
