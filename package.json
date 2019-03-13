@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "prettier": "prettier **/*.js --write"
+    "prettier": "prettier **/*.{js,md} --write"
   },
   "dependencies": {
     "bottleneck": "^2.17.1",

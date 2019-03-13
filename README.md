@@ -15,13 +15,12 @@ npm install --save-dev gulp-gitstage
 Then, add it to your `gulpfile.js`:
 
 ```javascript
-var gitstage = require('gulp-gitstage');
+const gitstage = require("gulp-gitstage");
 
-var files = gulp.src('./src/*.ext')
-  .pipe(gitstage());
+const files = gulp.src("./src/*.ext").pipe(gitstage());
 
-files.on('data', function (file) {
-  console.log('Staged file:', file);
+files.on("data", function(file) {
+  console.log("Staged file:", file);
 });
 ```
 
@@ -35,17 +34,17 @@ Currently there is no configuration for `gulp-gitstage`.
 
 ```javascript
 // Stage all files
-gulp.src('./**/*')
-    .pipe(gitmodified('added'))
+gulp.src("./**/*").pipe(gitmodified("added"));
 ```
 
 ```javascript
 // Stage previously staged files in case they changed
-var gitmodified = require('gulp-gitmodified');
-gulp.src('./**/*')
-    .pipe(gitmodified('modified'))
-    .pipe(/* edit the file */)
-    .pipe(gitmodified('A'))
+const gitmodified = require("gulp-gitmodified");
+gulp
+  .src("./**/*")
+  .pipe(gitmodified("modified"))
+  .pipe(/* edit the file */)
+  .pipe(gitmodified("A"));
 ```
 
 ## License
