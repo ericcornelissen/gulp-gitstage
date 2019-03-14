@@ -56,18 +56,13 @@ gulp
 
 [npm-url]: https://npmjs.org/package/gulp-gitstage
 [npm-image]: https://badge.fury.io/js/gulp-gitstage.png
-
 [build-url]: http://travis-ci.org/ericcornelissen/gulp-gitstage
 [build-image]: https://travis-ci.com/ericcornelissen/gulp-gitstage.svg?branch=master
-
 [deps-url]: https://david-dm.org/ericcornelissen/gulp-gitstage
 [deps-image]: https://david-dm.org/ericcornelissen/gulp-gitstage/status.svg
-
 [greenkeeper-url]: https://greenkeeper.io/
 [greenkeeper-image]: https://badges.greenkeeper.io/ericcornelissen/gulp-gitstage.svg
-
 [license-url]: https://opensource.org/licenses/MIT
 [license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
-
 [prettier-url]: https://prettier.io/
 [prettier-image]: https://img.shields.io/badge/styled_with-prettier-ff69b4.svg
