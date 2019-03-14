@@ -2,6 +2,7 @@
 
 [![NPM version][npm-image]][npm-url]
 [![Build Status][build-image]][build-url]
+[![Dependencies][deps-image]][deps-url]
 [![Greenkeeper][greenkeeper-image]][greenkeeper-url]
 [![License][license-image]][license-url]
 [![Prettier][prettier-image]][prettier-url]
@@ -58,6 +59,9 @@ gulp
 
 [build-url]: http://travis-ci.org/ericcornelissen/gulp-gitstage
 [build-image]: https://travis-ci.com/ericcornelissen/gulp-gitstage.svg?branch=master
+
+[deps-url]: https://david-dm.org/ericcornelissen/gulp-gitstage
+[deps-image]: https://david-dm.org/ericcornelissen/gulp-gitstage/status.svg
 
 [greenkeeper-url]: https://greenkeeper.io/
 [greenkeeper-image]: https://badges.greenkeeper.io/ericcornelissen/gulp-gitstage.svg
