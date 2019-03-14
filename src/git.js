@@ -28,6 +28,10 @@ Object.defineProperty(_export, "available", {
 });
 
 _export.stage = function(file, options, callback) {
+  if (!_export.available) {
+    throw new Error("missing git");
+  }
+
   return gitExecute([add, file], options, callback);
 };
 

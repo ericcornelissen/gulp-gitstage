@@ -1,9 +1,16 @@
 const git = require("../src/git.js");
 
-beforeAll(() => {
-  process.env.PATH = "";
-});
+describe("git not in PATH", () => {
+  beforeAll(() => {
+    // Clear the PATH so git cannot be found
+    process.env.PATH = "";
+  });
 
-test("returns false if git is not available", () => {
-  expect(git.available).toBeFalsy();
+  test("the 'available' property is false", () => {
+    expect(git.available).toBeFalsy();
+  });
+
+  test("the 'stage' function throws if git is not available", () => {
+    expect(git.stage).toThrow();
+  });
 });
