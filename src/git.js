@@ -48,6 +48,12 @@ Object.defineProperty(_export, "available", {
   },
 });
 
+/**
+ * @param  {String}   file     The path to the file to stage.
+ * @param  {Object}   config   Configuration of the stage action.
+ *                      - gitCwd: directory containing the '.git' folder.
+ * @param  {Function} callback The function to call on completion.
+ */
 _export.stage = function(file, config, callback) {
   return gitExecute([add, file], config, callback);
 };
