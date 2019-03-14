@@ -1,6 +1,7 @@
 # gulp-gitstage
 
 [![NPM version][npm-image]][npm-url]
+[![Build Status][build-image]][build-url]
 [![Greenkeeper][greenkeeper-image]][greenkeeper-url]
 [![License][license-image]][license-url]
 
@@ -53,6 +54,9 @@ gulp
 
 [npm-url]: https://npmjs.org/package/gulp-gitstage
 [npm-image]: https://badge.fury.io/js/gulp-gitstage.png
+
+[build-url]: http://travis-ci.org/ericcornelissen/gulp-gitstage
+[build-image]: https://travis-ci.com/ericcornelissen/gulp-gitstage.svg?branch=master
 
 [greenkeeper-url]: https://greenkeeper.io/
 [greenkeeper-image]: https://badges.greenkeeper.io/ericcornelissen/gulp-gitstage.svg
