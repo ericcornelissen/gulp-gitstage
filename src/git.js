@@ -21,10 +21,14 @@ const limiter = new Bottleneck({ maxConcurrent: 1 });
  *
  * @param  {Array}    args     The arguments for the command in order.
  * @param  {Object}   _options Options for the command.
+ *                      - gitCwd: directory containing the '.git' folder.
  * @param  {Function} callback Function called on completion.
  */
 function gitExecute(args, _options, callback) {
-  let options = Object.assign(defaultOptions, _options);
+  let options = Object.assign(defaultOptions, {
+    cwd: _options.gitCwd || __dirname,
+  });
+
   return limiter.submit(exec, git, args, options, callback);
 }
 
