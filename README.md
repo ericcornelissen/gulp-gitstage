@@ -4,6 +4,7 @@
 [![Build Status][build-image]][build-url]
 [![Greenkeeper][greenkeeper-image]][greenkeeper-url]
 [![License][license-image]][license-url]
+[![Prettier][prettier-image]][prettier-url]
 
 > plugin for [gulp](https://github.com/gulpjs/gulp) to stage files with git
 
@@ -63,3 +64,6 @@ gulp
 
 [license-url]: https://opensource.org/licenses/MIT
 [license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
+
+[prettier-url]: https://prettier.io/
+[prettier-image]: https://img.shields.io/badge/styled_with-prettier-ff69b4.svg
