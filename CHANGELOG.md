@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog], and this project adheres to [Semantic Versioning].
 
+## [Unreleased]
+
+### Added
+
+- Option to only stage files that were previously staged. ([#30])
+
 ## [1.1.0] - 2019-03-14
 
 Cleaned up original version and fixed the first bug 👌
@@ -29,9 +35,10 @@ create a gulp plugin to stage files 🎉
 - Stage files with git in the gulp object stream.
 - Examples of how to use the plugin.
 
-[Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
-[Semantic Versioning]: https://semver.org/spec/v2.0.0.html
+[keep a changelog]: https://keepachangelog.com/en/1.0.0/
+[semantic versioning]: https://semver.org/spec/v2.0.0.html
 [#11]: https://github.com/ericcornelissen/gulp-gitstage/issues/11
 [#12]: https://github.com/ericcornelissen/gulp-gitstage/issues/12
 [#14]: https://github.com/ericcornelissen/gulp-gitstage/issues/14
 [#17]: https://github.com/ericcornelissen/gulp-gitstage/issues/17
+[#30]: https://github.com/ericcornelissen/gulp-gitstage/issues/30
