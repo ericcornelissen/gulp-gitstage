@@ -2,8 +2,7 @@ const Bottleneck = require("bottleneck");
 const exec = require("child_process").execFile;
 const which = require("which");
 
-const git = "git";
-const add = "add";
+const { add, git } = require("./keywords.js");
 
 const limiter = new Bottleneck({ maxConcurrent: 1 });
 

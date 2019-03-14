@@ -1,6 +1,7 @@
 const process = require("child_process");
 const path = require("path");
 
+const command = require("../src/keywords.js");
 const git = require("../src/git.js");
 
 const file = path.join(__dirname, "./fixtures/a.txt");
@@ -38,7 +39,7 @@ describe("successful execution", () => {
   test("attempts to execute git", done => {
     git.stage(file, {}, () => {
       expect(process.execFile).toHaveBeenCalledWith(
-        "git",
+        command.git,
         expect.anything(),
         expect.anything(),
         expect.anything(),
@@ -52,7 +53,7 @@ describe("successful execution", () => {
     git.stage(file, {}, () => {
       expect(process.execFile).toHaveBeenCalledWith(
         expect.anything(),
-        ["add", file],
+        [command.add, file],
         expect.anything(),
         expect.anything(),
       );
