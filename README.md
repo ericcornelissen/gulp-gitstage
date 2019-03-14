@@ -1,5 +1,7 @@
 # gulp-gitstage
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ericcornelissen/gulp-gitstage.svg)](https://greenkeeper.io/)
+
 > plugin for [gulp](https://github.com/gulpjs/gulp) to stage files with git
 
 ## Usage
