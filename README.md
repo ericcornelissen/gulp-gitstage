@@ -1,6 +1,7 @@
 # gulp-gitstage
 
 [![NPM version][npm-image]][npm-url]
+[![Greenkeeper][greenkeeper-image]][greenkeeper-url]
 [![License][license-image]][license-url]
 
 > plugin for [gulp](https://github.com/gulpjs/gulp) to stage files with git
@@ -52,6 +53,9 @@ gulp
 
 [npm-url]: https://npmjs.org/package/gulp-gitstage
 [npm-image]: https://badge.fury.io/js/gulp-gitstage.png
+
+[greenkeeper-url]: https://greenkeeper.io/
+[greenkeeper-image]: https://badges.greenkeeper.io/ericcornelissen/gulp-gitstage.svg
 
 [license-url]: https://opensource.org/licenses/MIT
 [license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
