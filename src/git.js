@@ -4,6 +4,7 @@ const which = require("which");
 
 const git = "git";
 const add = "add";
+const update = "-u";
 
 const defaultOptions = { env: process.env };
 const limiter = new Bottleneck({ maxConcurrent: 1 });
@@ -44,8 +45,18 @@ Object.defineProperty(_export, "available", {
   },
 });
 
+/**
+ * @param  {String}   file     The path to the file to stage.
+ * @param  {Object}   config   Configuration of the stage action.
+ *                      - stagedOnly: only stage previously staged files.
+ * @param  {Function} callback The function to call on completion.
+ */
 _export.stage = function(file, config, callback) {
-  return gitExecute([add, file], config, callback);
+  const args = [add];
+  if (config.stagedOnly) args.push(update);
+  args.push(file);
+
+  return gitExecute(args, {}, callback);
 };
 
 module.exports = _export;
