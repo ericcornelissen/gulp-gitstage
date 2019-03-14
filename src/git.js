@@ -5,9 +5,11 @@ const which = require("which");
 const git = "git";
 const add = "add";
 
+const defaultOptions = { env: process.env };
 const limiter = new Bottleneck({ maxConcurrent: 1 });
 
-function gitExecute(args, options, callback) {
+function gitExecute(args, _options, callback) {
+  let options = Object.assign(defaultOptions, _options);
   return limiter.submit(exec, git, args, options, callback);
 }
 
@@ -27,8 +29,8 @@ Object.defineProperty(_export, "available", {
   },
 });
 
-_export.stage = function(file, options, callback) {
-  return gitExecute([add, file], options, callback);
+_export.stage = function(file, config, callback) {
+  return gitExecute([add, file], config, callback);
 };
 
 module.exports = _export;
