@@ -1,14 +1,12 @@
 const process = require("child_process");
 const path = require("path");
 
+const { stdin, stdout } = require("./utils.js");
+
 const command = require("../src/keywords.js");
 const git = require("../src/git.js");
 
 const file = path.join(__dirname, "./fixtures/a.txt");
-const stdin = "stdin";
-const stdout = "stdout";
-
-jest.mock("child_process");
 
 test("can be used to check if git is available", () => {
   expect(git).toHaveProperty("available");
@@ -21,14 +19,6 @@ test("can be used to execute the 'git add' command", () => {
 });
 
 describe("successful execution", () => {
-  beforeEach(() => {
-    process.execFile.mockImplementation((file, args, options, callback) => {
-      // The behaviour of this mock is based on:
-      // https://nodejs.org/api/child_process.html
-      callback(null, stdin, stdout);
-    });
-  });
-
   test("calls execFile", done => {
     git.stage(file, {}, () => {
       expect(process.execFile).toHaveBeenCalled();
@@ -109,13 +99,23 @@ describe("successful execution", () => {
     });
   });
 
-  afterEach(() => {
-    process.execFile.mockRestore();
+  test("gives an error if file is not a string", done => {
+    git.stage(() => true, {}, error => {
+      expect(error).not.toBeNull();
+      done();
+    });
+  });
+
+  test("does not attempt to execute git if file is not a string", done => {
+    git.stage(() => true, {}, error => {
+      expect(process.execFile).not.toHaveBeenCalled();
+      done();
+    });
   });
 });
 
 describe("unsuccessful execution", () => {
-  const error = new Error("execution failed");
+  const error = new Error("execution failed.");
 
   beforeEach(() => {
     process.execFile.mockImplementation((file, args, options, callback) => {
@@ -128,36 +128,6 @@ describe("unsuccessful execution", () => {
   test("the first parameter of the callback", done => {
     git.stage(file, {}, error => {
       expect(error).not.toBeNull();
-      done();
-    });
-  });
-
-  afterEach(() => {
-    process.execFile.mockRestore();
-  });
-});
-
-describe("successful execution", () => {
-  beforeEach(() => {
-    process.execFile.mockImplementation((file, args, options, callback) => {
-      // The behaviour of this mock is based on:
-      // https://nodejs.org/api/child_process.html
-      callback(null, stdin, stdout);
-    });
-  });
-
-  test("gives an error if file is not a string", done => {
-    git.stage(() => true, {}, error => {
-      expect(error).not.toBeNull();
-      done();
-    });
-  });
-
-  test("does not attempt to execute git if file is not a string", done => {
-    const execSpy = jest.spyOn(process, "execFile");
-    git.stage(() => true, {}, error => {
-      expect(execSpy).not.toHaveBeenCalled();
-      execSpy.mockRestore();
       done();
     });
   });

@@ -1,7 +1,6 @@
 const process = require("child_process");
 const gulp = require("gulp");
 const path = require("path");
-const which = require("which");
 
 const { each, reduce } = require("./utils.js");
 
@@ -9,10 +8,6 @@ const command = require("../src/keywords.js");
 const gitstage = require("../src/index.js");
 
 const files = path.join(__dirname, "./fixtures/*.txt");
-const stdin = "stdin";
-const stdout = "stdout";
-
-jest.mock("child_process");
 
 test("returns a stream", () => {
   const subject = gitstage();
@@ -21,14 +16,6 @@ test("returns a stream", () => {
 });
 
 describe("successful execution", () => {
-  beforeEach(() => {
-    process.execFile.mockImplementation((file, args, options, callback) => {
-      // The behaviour of this mock is based on:
-      // https://nodejs.org/api/child_process.html
-      callback(null, stdin, stdout);
-    });
-  });
-
   test("stage at least one file on git", done => {
     gulp
       .src(files)
@@ -80,9 +67,5 @@ describe("successful execution", () => {
           done();
         }),
       );
-  });
-
-  afterEach(() => {
-    process.execFile.mockRestore();
   });
 });

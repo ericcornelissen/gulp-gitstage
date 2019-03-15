@@ -1,10 +1,5 @@
-const gulp = require("gulp");
-const path = require("path");
-
 const gitstage = require("../src/index.js");
 const git = require("../src/git.js");
-
-let files = path.join(__dirname, "./fixtures/*.txt");
 
 beforeAll(() => {
   // Clear the PATH so git cannot be found
@@ -12,8 +7,9 @@ beforeAll(() => {
 });
 
 test("the plugin throws", () => {
-  const stream = gitstage();
-  expect(stream.write).toThrow();
+  const subject = gitstage();
+  expect(subject).toHaveProperty("write");
+  expect(subject.write).toThrow();
 });
 
 test("the 'available' property is false", () => {

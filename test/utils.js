@@ -1,6 +1,9 @@
 const map = require("map-stream");
 
 module.exports = {
+  stdin: "stdin",
+  stdout: "stdout",
+
   each: function(eachCallback) {
     return map((file, mapCallback) => {
       mapCallback(null, file);
