@@ -31,7 +31,11 @@ _export.stage = function(file, options, callback) {
     throw new Error("missing git");
   }
 
-  return gitExecute([add, file], options, callback);
+  if (typeof file !== "string") {
+    callback("file must be a string.");
+  } else {
+    gitExecute([add, file], options, callback);
+  }
 };
 
 module.exports = _export;

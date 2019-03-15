@@ -136,3 +136,33 @@ describe("unsuccessful execution", () => {
     process.execFile.mockRestore();
   });
 });
+
+describe("successful execution", () => {
+  beforeEach(() => {
+    process.execFile.mockImplementation((file, args, options, callback) => {
+      // The behaviour of this mock is based on:
+      // https://nodejs.org/api/child_process.html
+      callback(null, stdin, stdout);
+    });
+  });
+
+  test("gives an error if file is not a string", done => {
+    git.stage(() => true, {}, error => {
+      expect(error).not.toBeNull();
+      done();
+    });
+  });
+
+  test("does not attempt to execute git if file is not a string", done => {
+    const execSpy = jest.spyOn(process, "execFile");
+    git.stage(() => true, {}, error => {
+      expect(execSpy).not.toHaveBeenCalled();
+      execSpy.mockRestore();
+      done();
+    });
+  });
+
+  afterEach(() => {
+    process.execFile.mockRestore();
+  });
+});
