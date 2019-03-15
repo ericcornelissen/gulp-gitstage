@@ -4,7 +4,7 @@ const git = require("./git");
 const defaultOptions = { env: process.env };
 
 module.exports = function() {
-  return map(function(file, callback) {
+  return map((file, callback) => {
     if (!git.available) {
       return callback(new Error("git not found on your system."));
     }

@@ -1,31 +1,88 @@
+const process = require("child_process");
 const gulp = require("gulp");
 const path = require("path");
 const which = require("which");
 
-const { reduce, verify } = require("./utils.js");
+const { each, reduce } = require("./utils.js");
 
+const command = require("../src/keywords.js");
 const gitstage = require("../src/index.js");
-const git = require("../src/git.js");
 
-let files = path.join(__dirname, "./fixtures/*.txt");
+const files = path.join(__dirname, "./fixtures/*.txt");
+const stdin = "stdin";
+const stdout = "stdout";
+
+jest.mock("child_process");
 
 test("returns a stream", () => {
-  const result = gitstage();
-  expect(result).toHaveProperty("on");
-  expect(result).toHaveProperty("write");
+  const subject = gitstage();
+  expect(subject).toHaveProperty("on");
+  expect(subject).toHaveProperty("write");
 });
 
-test("stages a file on git", done => {
-  const spy = jest.spyOn(git, "stage");
+describe("successful execution", () => {
+  beforeEach(() => {
+    process.execFile.mockImplementation((file, args, options, callback) => {
+      // The behaviour of this mock is based on:
+      // https://nodejs.org/api/child_process.html
+      callback(null, stdin, stdout);
+    });
+  });
 
-  gulp
-    .src(files)
-    .pipe(gitstage())
-    .pipe(reduce())
-    .pipe(
-      verify(done, () => {
-        expect(spy).toHaveBeenCalled();
-        spy.mockRestore();
-      }),
-    );
+  test("stage at least one file on git", done => {
+    gulp
+      .src(files)
+      .pipe(gitstage())
+      .pipe(reduce())
+      .pipe(
+        each(() => {
+          expect(process.execFile).toHaveBeenCalled();
+          done();
+        }),
+      );
+  });
+
+  test("tries to stage all files in the stream", done => {
+    let filesCount = 0;
+
+    gulp
+      .src(files)
+      .pipe(each(() => filesCount++))
+      .pipe(gitstage())
+      .pipe(reduce())
+      .pipe(
+        each(() => {
+          expect(process.execFile).toHaveBeenCalledTimes(filesCount);
+          done();
+        }),
+      );
+  });
+
+  test("stage all files in the stream", done => {
+    let fileList = [];
+
+    gulp
+      .src(files)
+      .pipe(each(file => fileList.push(file.path)))
+      .pipe(gitstage())
+      .pipe(reduce())
+      .pipe(
+        each(() => {
+          for (let file of fileList) {
+            expect(process.execFile).toHaveBeenCalledWith(
+              expect.anything(),
+              [command.add, file],
+              expect.anything(),
+              expect.anything(),
+            );
+          }
+
+          done();
+        }),
+      );
+  });
+
+  afterEach(() => {
+    process.execFile.mockRestore();
+  });
 });
