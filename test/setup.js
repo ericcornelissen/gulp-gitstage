@@ -1,17 +1,7 @@
 const process = require("child_process");
-const which = require("which");
 
 const { stdin, stdout } = require("./utils.js");
 
-const command = require("../src/keywords.js");
-
-/* Verify git is available */
-const resolved = which.sync(command.git, { nothrow: true });
-if (!resolved) {
-  throw new Error("git must be available before tests can be run.");
-}
-
-/* Mock child_process */
 jest.mock("child_process");
 
 beforeEach(() => {

@@ -2,7 +2,7 @@ const gitstage = require("../src/index.js");
 const git = require("../src/git.js");
 
 beforeAll(() => {
-  // Clear the PATH so git cannot be found
+  // Clear the PATH so git definitely cannot be found
   process.env.PATH = "";
 });
 
