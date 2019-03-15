@@ -29,8 +29,8 @@ create a gulp plugin to stage files 🎉
 - Stage files with git in the gulp object stream.
 - Examples of how to use the plugin.
 
-[Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
-[Semantic Versioning]: https://semver.org/spec/v2.0.0.html
+[keep a changelog]: https://keepachangelog.com/en/1.0.0/
+[semantic versioning]: https://semver.org/spec/v2.0.0.html
 [#11]: https://github.com/ericcornelissen/gulp-gitstage/issues/11
 [#12]: https://github.com/ericcornelissen/gulp-gitstage/issues/12
 [#14]: https://github.com/ericcornelissen/gulp-gitstage/issues/14
