@@ -33,9 +33,13 @@ files.on("data", function(file) {
 
 ## API
 
-### gitstage()
+### `gitstage(options)`
 
-Currently there is no configuration for `gulp-gitstage`.
+This plugin takes a single object as configuration. The available options are listed below. Note that all options are optional.
+
+| option | description |
+| ------ | ----------- |
+| `name` | explanation |
 
 #### Examples
 

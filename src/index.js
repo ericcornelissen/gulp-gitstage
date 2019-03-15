@@ -1,15 +1,13 @@
 const map = require("map-stream");
 const git = require("./git");
 
-const defaultOptions = { env: process.env };
-
-module.exports = function() {
+module.exports = function(config = {}) {
   return map((file, callback) => {
     if (!git.available) {
       return callback(new Error("git not found on your system."));
     }
 
-    git.stage(file.path, defaultOptions, error => {
+    git.stage(file.path, config, error => {
       if (error) {
         return callback(new Error("git add failed."));
       }
