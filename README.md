@@ -37,9 +37,10 @@ files.on("data", function(file) {
 
 This plugin takes a single object as configuration. The available options are listed below. Note that all options are optional.
 
-| option   | description                                    |
-| -------- | ---------------------------------------------- |
-| `gitCwd` | Override from which directory git is executed. |
+| option       | description                                    |
+| ------------ | ---------------------------------------------- |
+| `gitCwd`     | Override from which directory git is executed. |
+| `stagedOnly` | Only stage previously staged files.            |
 
 #### Examples
 

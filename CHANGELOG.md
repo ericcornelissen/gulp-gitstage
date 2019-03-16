@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 ### Added
 
 - Option to specify a custom working directory for git. ([#29])
+- Option to only stage files that were previously staged. ([#30])
 
 ## [1.1.0] - 2019-03-14
 
@@ -42,3 +43,4 @@ create a gulp plugin to stage files 🎉
 [#14]: https://github.com/ericcornelissen/gulp-gitstage/issues/14
 [#17]: https://github.com/ericcornelissen/gulp-gitstage/issues/17
 [#29]: https://github.com/ericcornelissen/gulp-gitstage/issues/29
+[#30]: https://github.com/ericcornelissen/gulp-gitstage/issues/30

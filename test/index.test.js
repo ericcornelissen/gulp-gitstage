@@ -102,4 +102,77 @@ describe("Configuration", () => {
     expect(subject).toHaveProperty("write");
     expect(subject.write).toThrow();
   });
+
+  test("the 'stagedOnly' option is used when true", done => {
+    gulp
+      .src(files)
+      .pipe(
+        gitstage({
+          stagedOnly: true,
+        }),
+      )
+      .pipe(reduce())
+      .pipe(
+        each(() => {
+          expect(process.execFile).toHaveBeenCalledWith(
+            expect.anything(),
+            expect.arrayContaining([command.update]),
+            expect.anything(),
+            expect.anything(),
+          );
+
+          done();
+        }),
+      );
+  });
+
+  test("the 'stagedOnly' option is not used when false", done => {
+    gulp
+      .src(files)
+      .pipe(
+        gitstage({
+          stagedOnly: false,
+        }),
+      )
+      .pipe(reduce())
+      .pipe(
+        each(() => {
+          try {
+            expect(process.execFile).toHaveBeenCalledWith(
+              expect.anything(),
+              expect.not.arrayContaining([command.update]),
+              expect.anything(),
+              expect.anything(),
+            );
+          } catch (e) {
+            console.log(e);
+          }
+
+          done();
+        }),
+      );
+  });
+
+  test("the 'stagedOnly' option is not used by default", done => {
+    gulp
+      .src(files)
+      .pipe(gitstage())
+      .pipe(reduce())
+      .pipe(
+        each(() => {
+          try {
+            expect(process.execFile).toHaveBeenCalledWith(
+              expect.anything(),
+              expect.not.arrayContaining([command.update]),
+              expect.anything(),
+              expect.anything(),
+            );
+          } catch (e) {
+            console.log(e);
+          }
+
+          done();
+        }),
+      );
+  });
 });
