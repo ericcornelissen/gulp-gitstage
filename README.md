@@ -35,7 +35,8 @@ files.on("data", function(file) {
 
 ### `gitstage(options)`
 
-This plugin takes a single object as configuration. The available options are listed below. Note that all options are optional.
+This plugin takes a single object as configuration. The available options are
+listed below. Note that all options are optional.
 
 | option       | description                                    |
 | ------------ | ---------------------------------------------- |
