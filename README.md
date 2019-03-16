@@ -37,9 +37,10 @@ files.on("data", function(file) {
 
 This plugin takes a single object as configuration. The available options are listed below. Note that all options are optional.
 
-| option       | description                         |
-| ------------ | ----------------------------------- |
-| `stagedOnly` | Only stage previously staged files. |
+| option       | description                                    |
+| ------------ | ---------------------------------------------- |
+| `gitCwd`     | Override from which directory git is executed. |
+| `stagedOnly` | Only stage previously staged files.            |
 
 #### Examples
 
@@ -60,7 +61,7 @@ gulp
 
 [npm-url]: https://npmjs.org/package/gulp-gitstage
 [npm-image]: https://badge.fury.io/js/gulp-gitstage.png
-[build-url]: http://travis-ci.org/ericcornelissen/gulp-gitstage
+[build-url]: http://travis-ci.com/ericcornelissen/gulp-gitstage
 [build-image]: https://travis-ci.com/ericcornelissen/gulp-gitstage.svg?branch=master
 [deps-url]: https://david-dm.org/ericcornelissen/gulp-gitstage
 [deps-image]: https://david-dm.org/ericcornelissen/gulp-gitstage/status.svg

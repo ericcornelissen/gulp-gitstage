@@ -2,9 +2,7 @@ const Bottleneck = require("bottleneck");
 const exec = require("child_process").execFile;
 const which = require("which");
 
-const git = "git";
-const add = "add";
-const update = "-u";
+const { add, git, update } = require("./keywords.js");
 
 const defaultOptions = { env: process.env };
 const limiter = new Bottleneck({ maxConcurrent: 1 });
@@ -22,10 +20,14 @@ const limiter = new Bottleneck({ maxConcurrent: 1 });
  *
  * @param  {Array}    args     The arguments for the command in order.
  * @param  {Object}   _options Options for the command.
+ *                      - gitCwd: directory containing the '.git' folder.
  * @param  {Function} callback Function called on completion.
  */
 function gitExecute(args, _options, callback) {
-  let options = Object.assign(defaultOptions, _options);
+  let options = Object.assign(defaultOptions, {
+    cwd: _options.gitCwd || __dirname,
+  });
+
   return limiter.submit(exec, git, args, options, callback);
 }
 
@@ -48,15 +50,24 @@ Object.defineProperty(_export, "available", {
 /**
  * @param  {String}   file     The path to the file to stage.
  * @param  {Object}   config   Configuration of the stage action.
+ *                      - gitCwd: directory containing the '.git' folder.
  *                      - stagedOnly: only stage previously staged files.
  * @param  {Function} callback The function to call on completion.
  */
 _export.stage = function(file, config, callback) {
-  const args = [add];
-  if (config.stagedOnly) args.push(update);
-  args.push(file);
+  if (!_export.available) {
+    throw new Error("missing git.");
+  }
 
-  return gitExecute(args, {}, callback);
+  if (typeof file !== "string") {
+    callback("file must be a string.");
+  } else {
+    const args = [add];
+    if (config.stagedOnly) args.push(update);
+    args.push(file);
+
+    gitExecute(args, config, callback);
+  }
 };
 
 module.exports = _export;

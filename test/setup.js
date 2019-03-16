@@ -1,8 +1,17 @@
-const which = require("which");
+const process = require("child_process");
 
-const gitCmd = "git";
+const { stdin, stdout } = require("./utils.js");
 
-const resolved = which.sync(gitCmd, { nothrow: true });
-if (!resolved) {
-  throw new Error("git must be available before tests can be run.");
-}
+jest.mock("child_process");
+
+beforeEach(() => {
+  process.execFile.mockImplementation((file, args, options, callback) => {
+    // The behaviour of this mock is based on:
+    // https://nodejs.org/api/child_process.html
+    callback(null, stdin, stdout);
+  });
+});
+
+afterEach(() => {
+  process.execFile.mockRestore();
+});
