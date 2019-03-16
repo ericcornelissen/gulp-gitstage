@@ -69,3 +69,37 @@ describe("successful execution", () => {
       );
   });
 });
+
+describe("Configuration", () => {
+  test("the 'gitCwd' option is used", done => {
+    let customCwd = "../foo";
+    gulp
+      .src(files)
+      .pipe(
+        gitstage({
+          gitCwd: customCwd,
+        }),
+      )
+      .pipe(reduce())
+      .pipe(
+        each(() => {
+          expect(process.execFile).toHaveBeenCalledWith(
+            expect.anything(),
+            expect.anything(),
+            expect.objectContaining({
+              cwd: customCwd,
+            }),
+            expect.anything(),
+          );
+
+          done();
+        }),
+      );
+  });
+
+  test("the 'gitCwd' option must be a string", () => {
+    const subject = gitstage({ gitCwd: ["not", "a", "string"] });
+    expect(subject).toHaveProperty("write");
+    expect(subject.write).toThrow();
+  });
+});
