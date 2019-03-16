@@ -2,7 +2,7 @@ const map = require("map-stream");
 const git = require("./git");
 
 module.exports = function(config = {}) {
-  return map(function(file, callback) {
+  return map((file, callback) => {
     if (!git.available) {
       return callback(new Error("git not found on your system."));
     }

@@ -2,8 +2,7 @@ const Bottleneck = require("bottleneck");
 const exec = require("child_process").execFile;
 const which = require("which");
 
-const git = "git";
-const add = "add";
+const { add, git } = require("./keywords.js");
 
 const defaultOptions = { env: process.env };
 const limiter = new Bottleneck({ maxConcurrent: 1 });
@@ -55,7 +54,15 @@ Object.defineProperty(_export, "available", {
  * @param  {Function} callback The function to call on completion.
  */
 _export.stage = function(file, config, callback) {
-  return gitExecute([add, file], config, callback);
+  if (!_export.available) {
+    throw new Error("missing git");
+  }
+
+  if (typeof file !== "string") {
+    callback("file must be a string.");
+  } else {
+    gitExecute([add, file], config, callback);
+  }
 };
 
 module.exports = _export;

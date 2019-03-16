@@ -60,7 +60,7 @@ gulp
 
 [npm-url]: https://npmjs.org/package/gulp-gitstage
 [npm-image]: https://badge.fury.io/js/gulp-gitstage.png
-[build-url]: http://travis-ci.org/ericcornelissen/gulp-gitstage
+[build-url]: http://travis-ci.com/ericcornelissen/gulp-gitstage
 [build-image]: https://travis-ci.com/ericcornelissen/gulp-gitstage.svg?branch=master
 [deps-url]: https://david-dm.org/ericcornelissen/gulp-gitstage
 [deps-image]: https://david-dm.org/ericcornelissen/gulp-gitstage/status.svg
