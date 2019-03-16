@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog], and this project adheres to [Semantic Versioning].
 
+## [Unreleased]
+
+### Added
+
+- Option to specify a custom working directory for git. ([#29])
+
 ## [1.1.0] - 2019-03-14
 
 Cleaned up original version and fixed the first bug 👌
@@ -35,3 +41,4 @@ create a gulp plugin to stage files 🎉
 [#12]: https://github.com/ericcornelissen/gulp-gitstage/issues/12
 [#14]: https://github.com/ericcornelissen/gulp-gitstage/issues/14
 [#17]: https://github.com/ericcornelissen/gulp-gitstage/issues/17
+[#29]: https://github.com/ericcornelissen/gulp-gitstage/issues/29

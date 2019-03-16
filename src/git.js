@@ -20,10 +20,14 @@ const limiter = new Bottleneck({ maxConcurrent: 1 });
  *
  * @param  {Array}    args     The arguments for the command in order.
  * @param  {Object}   _options Options for the command.
+ *                      - gitCwd: directory containing the '.git' folder.
  * @param  {Function} callback Function called on completion.
  */
 function gitExecute(args, _options, callback) {
-  let options = Object.assign(defaultOptions, _options);
+  let options = Object.assign(defaultOptions, {
+    cwd: _options.gitCwd || __dirname,
+  });
+
   return limiter.submit(exec, git, args, options, callback);
 }
 
@@ -43,6 +47,12 @@ Object.defineProperty(_export, "available", {
   },
 });
 
+/**
+ * @param  {String}   file     The path to the file to stage.
+ * @param  {Object}   config   Configuration of the stage action.
+ *                      - gitCwd: directory containing the '.git' folder.
+ * @param  {Function} callback The function to call on completion.
+ */
 _export.stage = function(file, config, callback) {
   if (!_export.available) {
     throw new Error("missing git");
