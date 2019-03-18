@@ -1,6 +1,4 @@
 const Bottleneck = require("bottleneck");
-const exec = require("child_process").execFile;
-const which = require("which");
 
 const { add, git, update } = require("./keywords.js");
 
@@ -24,6 +22,8 @@ const limiter = new Bottleneck({ maxConcurrent: 1 });
  * @param  {Function} callback Function called on completion.
  */
 function gitExecute(args, _options, callback) {
+  const exec = require("child_process").execFile;
+
   let options = Object.assign(defaultOptions, {
     cwd: _options.gitCwd || __dirname,
   });
@@ -39,6 +39,8 @@ let _available = null;
 Object.defineProperty(_export, "available", {
   get: function() {
     if (_available === null) {
+      const which = require("which");
+
       let result = which.sync(git, { nothrow: true });
       _available = !(result === null);
     }
