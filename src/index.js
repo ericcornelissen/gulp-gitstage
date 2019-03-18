@@ -13,7 +13,9 @@ module.exports = function(config = {}) {
 
     git.stage(file.path, config, error => {
       if (error) {
-        return callback(new Error("git add failed."));
+        let errorMessage = error.message.split(/\n/)[1];
+        let [code, message] = errorMessage.split(/:\s/);
+        return callback(new Error(`git add failed: ${message} (${code})`));
       }
 
       callback(0, file);
