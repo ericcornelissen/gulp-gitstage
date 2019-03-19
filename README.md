@@ -60,6 +60,28 @@ gulp
   .pipe(gitmodified("A"));
 ```
 
+## Help
+
+<details>
+  <summary>Known errors & solutions</summary>
+
+<b>git not found on your system.</b>
+
+  <p>The <code>git</code> command was not found in your environment variables. <a href="https://stackoverflow.com/a/26620861">Read more here</a>.</p>
+
+<b>'gitCwd' must be a string.</b>
+
+  <p>The `gitCwd` option, as listed <a href="#gitstageoptions">above</a>, must be a string.</p>
+
+<b>pathspec 'path/to/file' did not match any files</b>
+
+  <p>You are trying to add a file that does not exist in your project. Perhaps you're using <a href="https://www.npmjs.com/package/gulp-rename">gulp-rename</a> before staging?</p>
+
+<b>Unable to create '.../.git/index.lock': File exists.</b>
+
+  <p>The plugin is trying to run multiple instances of `git add` simultaneously. If you get this error <a href="https://github.com/ericcornelissen/gulp-gitstage/issues/new"> report it immediately</a>.</p>
+</details>
+
 [npm-url]: https://npmjs.org/package/gulp-gitstage
 [npm-image]: https://badge.fury.io/js/gulp-gitstage.png
 [build-url]: http://travis-ci.com/ericcornelissen/gulp-gitstage
