@@ -2,7 +2,7 @@ const Bottleneck = require("bottleneck");
 const exec = require("child_process").execFile;
 const which = require("which");
 
-const { add, git, update } = require("./keywords.js");
+const { add, git, update } = require("./constants.js");
 
 const defaultOptions = { env: process.env };
 const limiter = new Bottleneck({ maxConcurrent: 1 });
@@ -24,6 +24,10 @@ const limiter = new Bottleneck({ maxConcurrent: 1 });
  * @param  {Function} callback Function called on completion.
  */
 function gitExecute(args, _options, callback) {
+  if (!_export.available) {
+    throw new Error("git not found on your system.");
+  }
+
   let options = Object.assign(defaultOptions, {
     cwd: _options.gitCwd || __dirname,
   });
@@ -55,10 +59,6 @@ Object.defineProperty(_export, "available", {
  * @param  {Function} callback The function to call on completion.
  */
 _export.stage = function(file, config, callback) {
-  if (!_export.available) {
-    throw new Error("missing git.");
-  }
-
   if (typeof file !== "string") {
     callback("file must be a string.");
   } else {

@@ -2,9 +2,9 @@ const process = require("child_process");
 const gulp = require("gulp");
 const path = require("path");
 
-const { each, reduce } = require("./utils.js");
+const { each, reduce, stdin, stdout } = require("./utils.js");
 
-const command = require("../src/keywords.js");
+const command = require("../src/constants.js");
 const gitstage = require("../src/index.js");
 
 const files = path.join(__dirname, "./fixtures/*.txt");
@@ -67,6 +67,56 @@ describe("successful execution", () => {
           done();
         }),
       );
+  });
+});
+
+describe("unsuccessful execution", () => {
+  const generateError = message => {
+    const error = new Error(message);
+    error.killed = false;
+    error.code = 128;
+    error.signal = null;
+    error.cmd = "git add [file]";
+
+    return error;
+  };
+
+  const gitErrorLevel = "fatal";
+  const gitErrorMessage = "pathspec [file] did not match any file";
+  const gitError = `${gitErrorLevel}: ${gitErrorMessage}`;
+
+  beforeEach(() => {
+    process.execFile.mockImplementation((file, args, options, callback) => {
+      const error = generateError(`Command failed: git add\n${gitError}`);
+
+      // The behaviour of this mock is based on:
+      // https://nodejs.org/api/child_process.html
+      callback(error, stdin, stdout);
+    });
+  });
+
+  test("emits an error if the file could not be added", done => {
+    gulp
+      .src(files)
+      .pipe(gitstage())
+      .on("error", () => {
+        done();
+      });
+  });
+
+  test("the error message is derived from the git error", done => {
+    gulp
+      .src(files)
+      .pipe(gitstage())
+      .on("error", error => {
+        expect(error.message).toMatch(gitErrorLevel);
+        expect(error.message).toMatch(gitErrorMessage);
+        done();
+      });
+  });
+
+  afterEach(() => {
+    process.execFile.mockRestore();
   });
 });
 
