@@ -2,7 +2,7 @@ const process = require("child_process");
 const gulp = require("gulp");
 const path = require("path");
 
-const { each, reduce } = require("./utils.js");
+const { each, reduce, stdin, stdout } = require("./utils.js");
 
 const command = require("../src/keywords.js");
 const gitstage = require("../src/index.js");
@@ -67,6 +67,37 @@ describe("successful execution", () => {
           done();
         }),
       );
+  });
+});
+
+describe("unsuccessful execution", () => {
+  const error = new Error(
+    "Command failed: git add [file]\nfatal: pathspec [file] did not match any file",
+  );
+  error.killed = false;
+  error.code = 128;
+  error.signal = null;
+  error.cmd = "git add [file]";
+
+  beforeEach(() => {
+    process.execFile.mockImplementation((file, args, options, callback) => {
+      // The behaviour of this mock is based on:
+      // https://nodejs.org/api/child_process.html
+      callback(error, stdin, stdout);
+    });
+  });
+
+  test("emits an error if the file could not be added", done => {
+    gulp
+      .src(files)
+      .pipe(gitstage())
+      .on("error", () => {
+        done();
+      });
+  });
+
+  afterEach(() => {
+    process.execFile.mockRestore();
   });
 });
 

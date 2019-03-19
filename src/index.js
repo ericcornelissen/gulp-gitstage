@@ -26,10 +26,11 @@ module.exports = function(config = {}) {
         let errorMessage = error.message.split(/\n/)[1];
         let [code, message] = errorMessage.split(/:\s/);
 
-        let error = new PluginError(
+        error = new PluginError(
           "gulp-gitstage",
           `git add failed: ${message} (${code}).`,
         );
+
         return callback(error);
       }
 
