@@ -5,6 +5,8 @@ const git = require("./git.js");
 const { errorTag } = require("./constants.js");
 
 module.exports = function(config = {}) {
+  const streamId = Math.random();
+
   return map((file, callback) => {
     if (!git.available) {
       let error = new PluginError(errorTag, "git not found on your system.");
@@ -16,20 +18,25 @@ module.exports = function(config = {}) {
       return callback(error);
     }
 
-    git.stage(file.path, config, error => {
-      if (error) {
-        let errorMessage = error.message.split(/\n/)[1];
-        let [code, message] = errorMessage.split(/:\s/);
+    git.stage(
+      file.path,
+      config,
+      error => {
+        if (error) {
+          let errorMessage = error.message.split(/\n/)[1];
+          let [code, message] = errorMessage.split(/:\s/);
 
-        error = new PluginError(
-          errorTag,
-          `git add failed: ${message} (${code}).`,
-        );
+          error = new PluginError(
+            errorTag,
+            `git add failed: ${message} (${code}).`,
+          );
 
-        return callback(error);
-      }
+          return callback(error);
+        }
 
-      callback(0, file);
-    });
+        callback(0, file);
+      },
+      streamId,
+    );
   });
 };
