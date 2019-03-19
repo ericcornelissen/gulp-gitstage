@@ -1,6 +1,4 @@
 const Bottleneck = require("bottleneck");
-const exec = require("child_process").execFile;
-const which = require("which");
 
 const { add, git, update } = require("./constants.js");
 
@@ -24,6 +22,8 @@ const limiter = new Bottleneck({ maxConcurrent: 1 });
  * @param  {Function} callback Function called on completion.
  */
 function gitExecute(args, _options, callback) {
+  const exec = require("child_process").execFile;
+
   if (!_export.available) {
     throw new Error("git not found on your system.");
   }
@@ -43,6 +43,8 @@ let _available = null;
 Object.defineProperty(_export, "available", {
   get: function() {
     if (_available === null) {
+      const which = require("which");
+
       let result = which.sync(git, { nothrow: true });
       _available = !(result === null);
     }
