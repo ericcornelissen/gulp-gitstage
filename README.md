@@ -79,7 +79,7 @@ gulp
 
 <b>Unable to create '.../.git/index.lock': File exists.</b>
 
-<p>The plugin is trying to run multiple instances of `git add` simultaneously. If you get this error <a href="https://github.com/ericcornelissen/gulp-gitstage/issues/new"> report it immediately</a>.</p>
+<p>The plugin is trying to run multiple instances of `git add` simultaneously. If you get this error <a href="https://github.com/ericcornelissen/gulp-gitstage/issues/new?template=bug.md">report it immediately</a>.</p>
 </details>
 
 [npm-url]: https://npmjs.org/package/gulp-gitstage
