@@ -71,16 +71,24 @@ describe("successful execution", () => {
 });
 
 describe("unsuccessful execution", () => {
-  const error = new Error(
-    "Command failed: git add [file]\nfatal: pathspec [file] did not match any file",
-  );
-  error.killed = false;
-  error.code = 128;
-  error.signal = null;
-  error.cmd = "git add [file]";
+  const generateError = message => {
+    const error = new Error(message);
+    error.killed = false;
+    error.code = 128;
+    error.signal = null;
+    error.cmd = "git add [file]";
+
+    return error;
+  };
+
+  const gitErrorLevel = "fatal";
+  const gitErrorMessage = "pathspec [file] did not match any file";
+  const gitError = `${gitErrorLevel}: ${gitErrorMessage}`;
 
   beforeEach(() => {
     process.execFile.mockImplementation((file, args, options, callback) => {
+      const error = generateError(`Command failed: git add\n${gitError}`);
+
       // The behaviour of this mock is based on:
       // https://nodejs.org/api/child_process.html
       callback(error, stdin, stdout);
@@ -92,6 +100,17 @@ describe("unsuccessful execution", () => {
       .src(files)
       .pipe(gitstage())
       .on("error", () => {
+        done();
+      });
+  });
+
+  test("the error message is derived from the git error", done => {
+    gulp
+      .src(files)
+      .pipe(gitstage())
+      .on("error", error => {
+        expect(error.message).toMatch(gitErrorLevel);
+        expect(error.message).toMatch(gitErrorMessage);
         done();
       });
   });
