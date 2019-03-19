@@ -2,6 +2,8 @@ const Bottleneck = require("bottleneck");
 
 const { add, git, update } = require("./constants.js");
 
+const BUFFER_DELAY = 150;
+const stageBuffers = {};
 const defaultOptions = { env: process.env };
 const limiter = new Bottleneck({ maxConcurrent: 1 });
 
@@ -35,6 +37,48 @@ function gitExecute(args, _options, callback) {
   return limiter.submit(exec, git, args, options, callback);
 }
 
+/**
+ * Get a buffer for a particular stream (based on the
+ * id) to which additional files can be pushed such
+ * that in the end only a single `git add` command is
+ * executed.
+ *
+ * @param {Any} id        A unique identifier for a stream.
+ * @return {StageBuffer}  The buffer that can be used to add files.
+ */
+function getStageBufferForStream(id) {
+  const debounce = require("debounce");
+
+  if (stageBuffers[id] === undefined) {
+    const callbacks = [];
+    const files = [];
+
+    const db = debounce(function(config) {
+      stageBuffers[id] = undefined;
+
+      const args = [add];
+      if (config.stagedOnly) args.push(update);
+      Array.prototype.push.apply(args, files);
+
+      gitExecute(args, config, (error, stdin, stdout) => {
+        for (const callback of callbacks) {
+          callback(error, stdin, stdout);
+        }
+      });
+    }, BUFFER_DELAY);
+
+    stageBuffers[id] = {
+      push: function(file, config, callback) {
+        callbacks.push(callback);
+        files.push(file);
+        db(config);
+      },
+    };
+  }
+
+  return stageBuffers[id];
+}
+
 /* === EXPORT === */
 
 const _export = {};
@@ -59,17 +103,15 @@ Object.defineProperty(_export, "available", {
  *                      - gitCwd: directory containing the '.git' folder.
  *                      - stagedOnly: only stage previously staged files.
  * @param  {Function} callback The function to call on completion.
+ * @param  {Any}      streamId A unique identifier for a stream.
  */
-_export.stage = function(file, config, callback) {
+_export.stage = function(file, config, callback, streamId) {
   if (typeof file !== "string") {
-    callback("file must be a string.");
-  } else {
-    const args = [add];
-    if (config.stagedOnly) args.push(update);
-    args.push(file);
-
-    gitExecute(args, config, callback);
+    return callback("file must be a string.");
   }
+
+  let buffer = getStageBufferForStream(streamId);
+  buffer.push(file, config, callback);
 };
 
 module.exports = _export;
