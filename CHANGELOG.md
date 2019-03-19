@@ -5,13 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog], and this project adheres to [Semantic
 Versioning].
 
-## [Unreleased]
+## [1.3.0] - 2019-03-19
 
 Increase performance :racehorse:
 
 ### Changed
 
+- Lazy load dependencies. ([#38])
 - Files to stage are now buffered to reduce number of calls to `git`. ([#41])
+
+### Fixed
+
+- Improved error messages, powered by `git` itself. ([#36])
 
 ## [1.2.0] - 2019-03-16
 
@@ -53,6 +58,8 @@ create a gulp plugin to stage files :tada:
 [#12]: https://github.com/ericcornelissen/gulp-gitstage/issues/12
 [#14]: https://github.com/ericcornelissen/gulp-gitstage/issues/14
 [#17]: https://github.com/ericcornelissen/gulp-gitstage/issues/17
-[#29]: https://github.com/ericcornelissen/gulp-gitstage/issues/29
-[#30]: https://github.com/ericcornelissen/gulp-gitstage/issues/30
+[#29]: https://github.com/ericcornelissen/gulp-gitstage/pull/29
+[#30]: https://github.com/ericcornelissen/gulp-gitstage/pull/30
+[#36]: https://github.com/ericcornelissen/gulp-gitstage/pull/36
+[#38]: https://github.com/ericcornelissen/gulp-gitstage/pull/38
 [#41]: https://github.com/ericcornelissen/gulp-gitstage/pull/41
