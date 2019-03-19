@@ -29,23 +29,28 @@ describe("successful execution", () => {
       );
   });
 
-  test("tries to stage all files in the stream", done => {
-    let filesCount = 0;
+  test("it tries to stage something", done => {
+    let fileList = [];
 
     gulp
       .src(files)
-      .pipe(each(() => filesCount++))
       .pipe(gitstage())
       .pipe(reduce())
       .pipe(
         each(() => {
-          expect(process.execFile).toHaveBeenCalledTimes(filesCount);
+          expect(process.execFile).toHaveBeenCalledWith(
+            expect.anything(),
+            expect.arrayContaining([command.add]),
+            expect.anything(),
+            expect.anything(),
+          );
+
           done();
         }),
       );
   });
 
-  test("stage all files in the stream", done => {
+  test("stages all files in the stream", done => {
     let fileList = [];
 
     gulp
@@ -58,7 +63,7 @@ describe("successful execution", () => {
           for (let file of fileList) {
             expect(process.execFile).toHaveBeenCalledWith(
               expect.anything(),
-              [command.add, file],
+              expect.arrayContaining([file]),
               expect.anything(),
               expect.anything(),
             );
