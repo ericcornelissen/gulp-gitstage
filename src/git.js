@@ -107,11 +107,11 @@ Object.defineProperty(_export, "available", {
  */
 _export.stage = function(file, config, callback, streamId) {
   if (typeof file !== "string") {
-    return callback("file must be a string.");
+    callback("file must be a string.");
+  } else {
+    const buffer = getStageBufferForStream(streamId);
+    buffer.push(file, config, callback);
   }
-
-  let buffer = getStageBufferForStream(streamId);
-  buffer.push(file, config, callback);
 };
 
 module.exports = _export;
