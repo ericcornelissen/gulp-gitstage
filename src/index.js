@@ -2,7 +2,7 @@ const map = require("map-stream");
 const PluginError = require("plugin-error");
 
 const git = require("./git.js");
-const { errorTag } = require("./keywords.js");
+const { errorTag } = require("./constants.js");
 
 module.exports = function(config = {}) {
   return map((file, callback) => {

@@ -3,7 +3,7 @@ const path = require("path");
 
 const { stdin, stdout } = require("./utils.js");
 
-const command = require("../src/keywords.js");
+const command = require("../src/constants.js");
 const git = require("../src/git.js");
 
 const file = path.join(__dirname, "./fixtures/a.txt");

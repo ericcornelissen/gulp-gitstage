@@ -2,7 +2,7 @@ const Bottleneck = require("bottleneck");
 const exec = require("child_process").execFile;
 const which = require("which");
 
-const { add, git, update } = require("./keywords.js");
+const { add, git, update } = require("./constants.js");
 
 const defaultOptions = { env: process.env };
 const limiter = new Bottleneck({ maxConcurrent: 1 });
