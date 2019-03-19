@@ -102,10 +102,10 @@ Object.defineProperty(_export, "available", {
  * @param  {Object}   config   Configuration of the stage action.
  *                      - gitCwd: directory containing the '.git' folder.
  *                      - stagedOnly: only stage previously staged files.
- * @param  {Function} callback The function to call on completion.
  * @param  {Any}      streamId A unique identifier for a stream.
+ * @param  {Function} callback The function to call on completion.
  */
-_export.stage = function(file, config, callback, streamId) {
+_export.stage = function(file, config, streamId, callback) {
   if (typeof file !== "string") {
     callback("file must be a string.");
   } else {

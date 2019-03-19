@@ -18,25 +18,20 @@ module.exports = function(config = {}) {
       return callback(error);
     }
 
-    git.stage(
-      file.path,
-      config,
-      error => {
-        if (error) {
-          let errorMessage = error.message.split(/\n/)[1];
-          let [code, message] = errorMessage.split(/:\s/);
+    git.stage(file.path, config, streamId, error => {
+      if (error) {
+        let errorMessage = error.message.split(/\n/)[1];
+        let [code, message] = errorMessage.split(/:\s/);
 
-          error = new PluginError(
-            errorTag,
-            `git add failed: ${message} (${code}).`,
-          );
+        error = new PluginError(
+          errorTag,
+          `git add failed: ${message} (${code}).`,
+        );
 
-          return callback(error);
-        }
+        return callback(error);
+      }
 
-        callback(0, file);
-      },
-      streamId,
-    );
+      callback(0, file);
+    });
   });
 };
