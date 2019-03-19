@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog], and this project adheres to [Semantic
 Versioning].
 
+## [Unreleased]
+
+Increase performance :racehorse:
+
+### Changed
+
+- Files to stage are now buffered to reduce number of calls to `git`. ([#41])
+
 ## [1.2.0] - 2019-03-16
 
 Add some configuration :wrench:
@@ -47,3 +55,4 @@ create a gulp plugin to stage files :tada:
 [#17]: https://github.com/ericcornelissen/gulp-gitstage/issues/17
 [#29]: https://github.com/ericcornelissen/gulp-gitstage/issues/29
 [#30]: https://github.com/ericcornelissen/gulp-gitstage/issues/30
+[#41]: https://github.com/ericcornelissen/gulp-gitstage/pull/41
