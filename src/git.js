@@ -1,11 +1,10 @@
-const Bottleneck = require("bottleneck");
-
+const callLimiter = require("./call-limiter.js");
 const { add, git, update } = require("./constants.js");
 
 const BUFFER_DELAY = 150;
 const stageBuffers = {};
 const defaultOptions = { env: process.env };
-const limiter = new Bottleneck({ maxConcurrent: 1 });
+const limiter = callLimiter.new({ concurrency: 1 });
 
 /**
  * Execute arbitrary git commands one at the time. When
@@ -34,7 +33,7 @@ function gitExecute(args, _options, callback) {
     cwd: _options.gitCwd || __dirname,
   });
 
-  return limiter.submit(exec, git, args, options, callback);
+  return limiter.schedule(exec, git, args, options, callback);
 }
 
 /**
