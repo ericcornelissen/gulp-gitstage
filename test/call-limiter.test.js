@@ -26,7 +26,7 @@ test("schedule property", () => {
 });
 
 describe("call limiting", () => {
-  test("in order", done => {
+  test("runs the functions in order", done => {
     const limiter = callLimiter.new({ concurrency: 1 });
 
     limiter.schedule(instantSpy, () => {
@@ -62,7 +62,7 @@ describe("call limiting", () => {
     let counter = 0;
     const interval = setInterval(() => counter++, 499);
 
-    // Schedule 8 slow spies, should take 3 seconds
+    // Schedule 9 slow spies, should take 3 seconds
     limiter.schedule(slowSpy, noop);
     limiter.schedule(slowSpy, noop);
     limiter.schedule(slowSpy, noop);

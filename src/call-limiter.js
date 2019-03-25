@@ -1,7 +1,6 @@
 /**
- * The call limiter module can be used to create schedulers
- * that limit the number of parallel functions running at
- * any time.
+ * The call limiter module can be used to create schedulers that
+ * limit the number of parallel functions running at any time.
  *
  * ## API
  * - new: instantiate a new call limiter.
@@ -14,7 +13,7 @@ module.exports = {
    * ## Example
    * ```
    * const limiter = new({concurrency: 1});
-   * new.schedule(fn, arg1, arg2, ..., argn, callback);
+   * new.schedule(fn, arg1, arg2, ..., argN, callback);
    * ```
    *
    * ## Return object API
@@ -34,7 +33,7 @@ module.exports = {
        *
        * @param  {Function} fn       The function to be called.
        * @param  {...Any}   args     The arguments to call the function with.
-       * @param  {Function} callback The function to call when the fn finished.
+       * @param  {Function} callback The function to call when `fn` finished.
        */
       schedule: function(fn, ...args) {
         limiter.submit.call(limiter, fn, ...args);
