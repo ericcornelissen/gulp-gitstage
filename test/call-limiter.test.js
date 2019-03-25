@@ -18,11 +18,18 @@ beforeEach(() => {
   });
 });
 
-test("schedule property", () => {
-  const limiter = callLimiter.new({ concurrency: 1 });
+test("new property", () => {
+  expect(callLimiter).toHaveProperty("new");
+  expect(callLimiter.new).toBeInstanceOf(Function);
+});
 
-  expect(limiter).toHaveProperty("schedule");
-  expect(limiter.schedule).toBeTruthy();
+describe("limiter instance", () => {
+  test("schedule property", () => {
+    const limiter = callLimiter.new({ concurrency: 1 });
+
+    expect(limiter).toHaveProperty("schedule");
+    expect(limiter.schedule).toBeInstanceOf(Function);
+  });
 });
 
 describe("call limiting", () => {
