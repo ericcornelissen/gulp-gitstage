@@ -1,5 +1,3 @@
-const Bottleneck = require("bottleneck");
-
 /**
  * The call limiter module can be used to create schedulers
  * that limit the number of parallel functions running at
@@ -27,6 +25,7 @@ module.exports = {
    * @return {Object}             An object according to the Return object API.
    */
   new: function({ concurrency }) {
+    const Bottleneck = require("bottleneck");
     const limiter = new Bottleneck({ maxConcurrent: concurrency });
 
     return {
