@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog], and this project adheres to [Semantic
 Versioning].
 
+## [Unreleased]
+
+-
+
+### Changed
+
+- Abstract dependencies behind local modules. ([#42])
+
 ## [1.3.0] - 2019-03-19
 
 Increase performance :racehorse:
@@ -63,3 +71,4 @@ create a gulp plugin to stage files :tada:
 [#36]: https://github.com/ericcornelissen/gulp-gitstage/pull/36
 [#38]: https://github.com/ericcornelissen/gulp-gitstage/pull/38
 [#41]: https://github.com/ericcornelissen/gulp-gitstage/pull/41
+[#42]: https://github.com/ericcornelissen/gulp-gitstage/pull/42

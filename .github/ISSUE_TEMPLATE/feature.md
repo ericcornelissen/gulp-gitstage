@@ -1,6 +1,7 @@
 ---
 name: Feature request
 about: Request a feature for gulp-gitstage
+labels: enhancement
 ---
 
 ## General idea

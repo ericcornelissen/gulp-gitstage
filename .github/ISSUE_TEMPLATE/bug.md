@@ -1,6 +1,7 @@
 ---
 name: Bug report
 about: Report a bug with gulp-gitstage
+labels: bug
 ---
 
 ###### NodeJS version
