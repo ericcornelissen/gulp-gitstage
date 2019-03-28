@@ -31,7 +31,7 @@ function gitExecute(args, _options, callback) {
   }
 
   const options = Object.assign(DEFAULT_OPTIONS, {
-    cwd: _options.gitCwd || __dirname,
+    cwd: _options.gitCwd,
   });
 
   return limiter.schedule(exec, git, args, options, callback);
