@@ -18,8 +18,9 @@
     "git add"
   ],
   "scripts": {
+    "prettier": "prettier **/*.{js,md} --write",
     "test": "jest",
-    "prettier": "prettier **/*.{js,md} --write"
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "bottleneck": "^2.17.1",
