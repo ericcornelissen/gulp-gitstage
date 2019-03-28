@@ -9,6 +9,7 @@ const git = require("./git.js");
  * The plugin will {@link https://git-scm.com/docs/git-add stage} all files in
  * the stream (unless configured otherwse) to a {@link https://git-scm.com/ git}
  * repository.
+ *
  * @exports gulp-gitstage
  * @param  {String} [gitCwd=cwd] Override from which directory git is executed.
  * @param  {Boolean} [stagedOnly=false] Only stage previously staged files.
