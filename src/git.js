@@ -26,7 +26,7 @@ const limiter = callLimiter.new({ concurrency: 1 });
 function gitExecute(args, _options, callback) {
   const exec = require("child_process").execFile;
 
-  if (!_export.available) {
+  if (!isGitAvailable()) {
     throw new Error("git not found on your system.");
   }
 
@@ -79,42 +79,37 @@ function getStageBufferForStream(id) {
   return STAGE_BUFFERS[id];
 }
 
-/* === EXPORT === */
-
-const _export = {};
-
 let _available = null;
-Object.defineProperty(_export, "available", {
-  get: function() {
-    if (_available === null) {
-      const which = require("which");
+function isGitAvailable() {
+  if (_available === null) {
+    const which = require("which");
 
-      const result = which.sync(git, { nothrow: true });
-      _available = !(result === null);
-    }
-
-    return _available;
-  },
-});
-
-/**
- * @param  {String}   file     The path to the file to stage.
- * @param  {Object}   config   Configuration of the stage action.
- *                      - gitCwd: directory containing the '.git' folder.
- *                      - stagedOnly: only stage previously staged files.
- * @param  {Any}      streamId A unique identifier for a stream.
- * @param  {Function} callback The function to call on completion.
- * @throws {TypeError}         Callback is not a function.
- */
-_export.stage = function(file, config, streamId, callback) {
-  if (typeof file !== types.string) {
-    callback("file must be a string.");
-  } else if (typeof callback !== types.function) {
-    throw new TypeError("callback is not a function");
-  } else {
-    const stageBuffer = getStageBufferForStream(streamId);
-    stageBuffer.push(file, config, callback);
+    const result = which.sync(git, { nothrow: true });
+    _available = !(result === null);
   }
-};
 
-module.exports = _export;
+  return _available;
+}
+
+module.exports = {
+  /**
+   * @param  {String}   file     The path to the file to stage.
+   * @param  {Object}   config   Configuration of the stage action.
+   *                      - gitCwd: directory containing the '.git' folder.
+   *                      - stagedOnly: only stage previously staged files.
+   * @param  {Any}      streamId A unique identifier for a stream.
+   * @param  {Function} callback The function to call on completion.
+   * @throws {TypeError}         Callback is not a function.
+   * @throws {Error}             The git command is not present.
+   */
+  stage: function(file, config, streamId, callback) {
+    if (typeof file !== types.string) {
+      callback("file must be a string.");
+    } else if (typeof callback !== types.function) {
+      throw new TypeError("callback is not a function");
+    } else {
+      const stageBuffer = getStageBufferForStream(streamId);
+      stageBuffer.push(file, config, callback);
+    }
+  },
+};
