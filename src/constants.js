@@ -1,5 +1,5 @@
 module.exports = {
-  errorTag: "gulp-gitstage",
+  pluginTag: "gulp-gitstage",
 
   // git commands\options
   add: "add",

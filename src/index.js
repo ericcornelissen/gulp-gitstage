@@ -1,9 +1,9 @@
-const log = require("gulplog");
 const map = require("map-stream");
 const PluginError = require("plugin-error");
 
 const git = require("./git.js");
-const { errorTag } = require("./constants.js");
+const { pluginTag } = require("./constants.js");
+const log = require("./log.js");
 
 module.exports = function(config = {}) {
   const streamId = Math.random();
@@ -13,12 +13,12 @@ module.exports = function(config = {}) {
     const file = _file.path;
 
     if (!git.available) {
-      let error = new PluginError(errorTag, "git not found on your system.");
+      let error = new PluginError(pluginTag, "git not found on your system.");
       return callback(error);
     }
 
     if (config.gitCwd !== undefined && typeof config.gitCwd !== "string") {
-      let error = new PluginError(errorTag, "'gitCwd' must be a string.");
+      let error = new PluginError(pluginTag, "'gitCwd' must be a string.");
       return callback(error);
     }
 
@@ -31,7 +31,7 @@ module.exports = function(config = {}) {
         let [code, message] = errorMessage.split(/:\s/);
 
         error = new PluginError(
-          errorTag,
+          pluginTag,
           `git add failed: ${message} (${code}).`,
         );
 
