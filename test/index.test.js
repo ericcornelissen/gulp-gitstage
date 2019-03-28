@@ -55,7 +55,7 @@ describe("successful execution", () => {
 
     gulp
       .src(files)
-      .pipe(each(file => fileList.push(file.path)))
+      .pipe(each(file => fileList.push(file.basename)))
       .pipe(gitstage())
       .pipe(reduce())
       .pipe(
@@ -63,7 +63,7 @@ describe("successful execution", () => {
           for (let file of fileList) {
             expect(process.execFile).toHaveBeenCalledWith(
               expect.anything(),
-              expect.arrayContaining([file]),
+              expect.arrayContaining([expect.stringContaining(file)]),
               expect.anything(),
               expect.anything(),
             );
