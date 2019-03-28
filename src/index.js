@@ -11,17 +11,9 @@ const git = require("./git.js");
  * repository.
  *
  * @exports gulp-gitstage
- * @param  {String} [gitCwd=cwd] Override from which directory git is executed.
+ * @param  {String} [gitCwd=cwd]        Override from which directory git is executed.
  * @param  {Boolean} [stagedOnly=false] Only stage previously staged files.
- * @return {Stream}          Identity file stream, does not modify the input.
- * @example
- * // simple usage
- * gulp.src(...).pipe(gitstage());
- * @example
- * // run prettier and readd staged files
- * gulp.src(...)
- *     .pipe(prettier())
- *     .pipe(gitstage({stagedOnly: true}));
+ * @return {Stream}                     Identity file stream, does not modify the input.
  */
 module.exports = function(config = {}) {
   const streamId = Math.random();
