@@ -8,11 +8,6 @@ const git = require("../src/git.js");
 
 const file = path.join(__dirname, "./fixtures/a.txt");
 
-test("can be used to check if git is available", () => {
-  expect(git).toHaveProperty("available");
-  expect(git.available).toBeTruthy();
-});
-
 test("can be used to execute the 'git add' command", () => {
   expect(git).toHaveProperty("stage");
   expect(git.stage).toBeInstanceOf(Function);
@@ -104,6 +99,10 @@ describe("successful execution", () => {
       expect(error).not.toBeNull();
       done();
     });
+  });
+
+  test("throws an error if callback is not a function", () => {
+    expect(() => git.stage("", {}, 42, false)).toThrowError(TypeError);
   });
 
   test("does not attempt to execute git if file is not a string", done => {

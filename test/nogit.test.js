@@ -12,10 +12,6 @@ test("the plugin throws", () => {
   expect(subject.write).toThrow();
 });
 
-test("the 'available' property is false", () => {
-  expect(git.available).toBeFalsy();
-});
-
 test("the 'stage' function throws if git is not available", () => {
   expect(git.stage).toThrow();
 });
