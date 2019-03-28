@@ -18,8 +18,9 @@
     "git add"
   ],
   "scripts": {
-    "test": "jest",
-    "prettier": "prettier **/*.{js,md} --write"
+    "example": "gulp --gulpfile test/fixtures/gulpfile.js -LLLL",
+    "prettier": "prettier **/*.{js,md} --write",
+    "test": "jest"
   },
   "dependencies": {
     "bottleneck": "^2.17.1",
