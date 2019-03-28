@@ -1,5 +1,5 @@
 const callLimiter = require("./call-limiter.js");
-const { add, git, update } = require("./constants.js");
+const { add, git, types, update } = require("./constants.js");
 
 const BUFFER_DELAY = 150;
 const DEFAULT_OPTIONS = { env: process.env };
@@ -107,9 +107,9 @@ Object.defineProperty(_export, "available", {
  * @throws {TypeError}         Callback is not a function.
  */
 _export.stage = function(file, config, streamId, callback) {
-  if (typeof file !== "string") {
+  if (typeof file !== types.string) {
     callback("file must be a string.");
-  } else if (typeof callback !== "function") {
+  } else if (typeof callback !== types.function) {
     throw new TypeError("callback is not a function");
   } else {
     const stageBuffer = getStageBufferForStream(streamId);
