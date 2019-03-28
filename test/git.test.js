@@ -106,6 +106,10 @@ describe("successful execution", () => {
     });
   });
 
+  test("throws an error if callback is not a function", () => {
+    expect(() => git.stage("", {}, 42, false)).toThrowError(TypeError);
+  });
+
   test("does not attempt to execute git if file is not a string", done => {
     git.stage(() => true, {}, 0.1337, error => {
       expect(process.execFile).not.toHaveBeenCalled();

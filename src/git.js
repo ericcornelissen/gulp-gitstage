@@ -103,10 +103,13 @@ Object.defineProperty(_export, "available", {
  *                      - stagedOnly: only stage previously staged files.
  * @param  {Any}      streamId A unique identifier for a stream.
  * @param  {Function} callback The function to call on completion.
+ * @throws {TypeError}         Callback is not a function.
  */
 _export.stage = function(file, config, streamId, callback) {
   if (typeof file !== "string") {
     callback("file must be a string.");
+  } else if (typeof callback !== "function") {
+    throw new TypeError("callback is not a function");
   } else {
     const buffer = getStageBufferForStream(streamId);
     buffer.push(file, config, callback);
