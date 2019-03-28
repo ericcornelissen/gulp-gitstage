@@ -12,6 +12,7 @@ Versioning].
 ### Changed
 
 - Abstract dependencies behind local modules. ([#42])
+- Commit files based on relative rather than absolute path. ([#47])
 
 ## [1.3.0] - 2019-03-19
 
@@ -72,3 +73,4 @@ create a gulp plugin to stage files :tada:
 [#38]: https://github.com/ericcornelissen/gulp-gitstage/pull/38
 [#41]: https://github.com/ericcornelissen/gulp-gitstage/pull/41
 [#42]: https://github.com/ericcornelissen/gulp-gitstage/pull/42
+[#47]: https://github.com/ericcornelissen/gulp-gitstage/pull/47
