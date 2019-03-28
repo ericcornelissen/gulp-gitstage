@@ -2,8 +2,9 @@ const callLimiter = require("./call-limiter.js");
 const { add, git, update } = require("./constants.js");
 
 const BUFFER_DELAY = 150;
-const stageBuffers = {};
-const defaultOptions = { env: process.env };
+const DEFAULT_OPTIONS = { env: process.env };
+const STAGE_BUFFERS = {};
+
 const limiter = callLimiter.new({ concurrency: 1 });
 
 /**
@@ -29,7 +30,7 @@ function gitExecute(args, _options, callback) {
     throw new Error("git not found on your system.");
   }
 
-  let options = Object.assign(defaultOptions, {
+  const options = Object.assign(DEFAULT_OPTIONS, {
     cwd: _options.gitCwd || __dirname,
   });
 
@@ -48,12 +49,12 @@ function gitExecute(args, _options, callback) {
 function getStageBufferForStream(id) {
   const debounce = require("debounce");
 
-  if (stageBuffers[id] === undefined) {
+  if (STAGE_BUFFERS[id] === undefined) {
     const callbacks = [];
     const files = [];
 
     const db = debounce(function(config) {
-      stageBuffers[id] = undefined;
+      STAGE_BUFFERS[id] = undefined;
 
       const args = [add];
       if (config.stagedOnly) args.push(update);
@@ -66,7 +67,7 @@ function getStageBufferForStream(id) {
       });
     }, BUFFER_DELAY);
 
-    stageBuffers[id] = {
+    STAGE_BUFFERS[id] = {
       push: function(file, config, callback) {
         callbacks.push(callback);
         files.push(file);
@@ -75,7 +76,7 @@ function getStageBufferForStream(id) {
     };
   }
 
-  return stageBuffers[id];
+  return STAGE_BUFFERS[id];
 }
 
 /* === EXPORT === */
@@ -88,7 +89,7 @@ Object.defineProperty(_export, "available", {
     if (_available === null) {
       const which = require("which");
 
-      let result = which.sync(git, { nothrow: true });
+      const result = which.sync(git, { nothrow: true });
       _available = !(result === null);
     }
 
@@ -111,8 +112,8 @@ _export.stage = function(file, config, streamId, callback) {
   } else if (typeof callback !== "function") {
     throw new TypeError("callback is not a function");
   } else {
-    const buffer = getStageBufferForStream(streamId);
-    buffer.push(file, config, callback);
+    const stageBuffer = getStageBufferForStream(streamId);
+    stageBuffer.push(file, config, callback);
   }
 };
 
