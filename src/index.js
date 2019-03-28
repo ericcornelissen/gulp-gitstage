@@ -23,10 +23,10 @@ module.exports = function(config = {}) {
           `git add failed: ${message} (${code}).`,
         );
 
-        return callback(error);
+        callback(error);
+      } else {
+        callback(0, file);
       }
-
-      callback(0, file);
     });
   });
 };
