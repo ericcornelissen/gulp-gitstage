@@ -7,21 +7,20 @@ const STAGE_BUFFERS = {};
 
 const limiter = callLimiter.new({ concurrency: 1 });
 
+let _available = null;
+
 /**
- * Execute arbitrary git commands one at the time. When
- * multiple calls are performed in quick succession the
- * git commands are automatically rate limited.
+ * Execute arbitrary git commands one at the time. When multiple calls are
+ * made in quick succession the commands are automatically rate limited.
  *
- * Example:
- * ```
+ * @private
+ * @param  {Array} args - The arguments for the command in order.
+ * @param  {String} gitCwd - Relative path to the root of the git repository.
+ * @param  {Function} callback - Function called on completion.
+ * @example
+ * const options = {gitCwd: "../"}
  * gitExecute(['add', 'myfile.txt'], options, callback);
  * // -> executes: $ git add myfile.txt
- * ```
- *
- * @param  {Array}    args     The arguments for the command in order.
- * @param  {Object}   _options Options for the command.
- *                      - gitCwd: directory containing the '.git' folder.
- * @param  {Function} callback Function called on completion.
  */
 function gitExecute(args, _options, callback) {
   const exec = require("child_process").execFile;
@@ -38,13 +37,15 @@ function gitExecute(args, _options, callback) {
 }
 
 /**
- * Get a buffer for a particular stream (based on the
- * id) to which additional files can be pushed such
- * that in the end only a single `git add` command is
- * executed.
+ * Get a buffer for a particular stream (based on the id) to which files can be
+ * pushed such that in the end only a single `git add` command is executed.
  *
- * @param {Any} id        A unique identifier for a stream.
- * @return {StageBuffer}  The buffer that can be used to add files.
+ * @private
+ * @param {Any} id - A unique identifier for a stream.
+ * @return {StageBuffer} The buffer that can be used to add files.
+ * @example
+ * const stageBuffer = getStageBufferForStream(42);
+ * stageBuffer.push(file, config, callback)
  */
 function getStageBufferForStream(id) {
   const debounce = require("debounce");
@@ -79,7 +80,12 @@ function getStageBufferForStream(id) {
   return STAGE_BUFFERS[id];
 }
 
-let _available = null;
+/**
+ * Check whether or not git is available on the system.
+ *
+ * @private
+ * @return {Boolean} True if git is available on the system, false otherwise.
+ */
 function isGitAvailable() {
   if (_available === null) {
     const which = require("which");
@@ -91,16 +97,30 @@ function isGitAvailable() {
   return _available;
 }
 
+/**
+ * Provides an API to interact with git.
+ * @module git
+ */
 module.exports = {
   /**
-   * @param  {String}   file     The path to the file to stage.
-   * @param  {Object}   config   Configuration of the stage action.
-   *                      - gitCwd: directory containing the '.git' folder.
-   *                      - stagedOnly: only stage previously staged files.
-   * @param  {Any}      streamId A unique identifier for a stream.
-   * @param  {Function} callback The function to call on completion.
-   * @throws {TypeError}         Callback is not a function.
-   * @throws {Error}             The git command is not present.
+   * Stage a file in a git repository.
+   *
+   * @param  {String} file - Path to the file to stage.
+   * @param  {String} gitCwd - Relative path to the root of the git repository.
+   * @param  {Boolean} stagedOnly - Only stage previously staged files.
+   * @param  {Any} streamId - An identifier to bundle multiple files.
+   * @param  {Function} callback - The function to call on completion.
+   * @throws {TypeError} Callback is not a function.
+   * @throws {Error} The git command is not present.
+   * @example
+   * const config = {gitCwd: "../", stagedOnly: false};
+   * stage('my-file.js', config, 42, error => {
+   *  if (error) {
+   *    console.log('Failed.');
+   *  } else {
+   *    console.log('Success!');
+   *  }
+   * });
    */
   stage: function(file, config, streamId, callback) {
     if (typeof file !== types.string) {
