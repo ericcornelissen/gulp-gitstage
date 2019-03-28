@@ -5,4 +5,10 @@ module.exports = {
   add: "add",
   git: "git",
   update: "-u",
+
+  // type names
+  types: {
+    function: "function",
+    string: "string",
+  },
 };
