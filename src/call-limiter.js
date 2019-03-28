@@ -1,8 +1,6 @@
 /**
  * Provides an API to rate limit calls to any funciton.
- *
- * @exports callLimiter
- * @property {Function} new Create a new call limiter.
+ * @module callLimiter
  */
 module.exports = {
   /**
