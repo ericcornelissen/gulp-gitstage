@@ -8,11 +8,6 @@ module.exports = function(config = {}) {
   const streamId = Math.random();
 
   return map((file, callback) => {
-    if (!git.available) {
-      const error = new PluginError(errorTag, "git not found on your system.");
-      return callback(error);
-    }
-
     if (config.gitCwd && typeof config.gitCwd !== types.string) {
       const error = new PluginError(errorTag, "'gitCwd' must be a string.");
       return callback(error);
