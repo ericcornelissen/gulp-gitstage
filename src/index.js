@@ -20,13 +20,13 @@ module.exports = function(config = {}) {
   const streamId = Math.random();
 
   return map((_file, callback) => {
-    const gitRoot = path.resolve(_file.cwd, config.gitCwd || "");
-    const file = path.relative(gitRoot, _file.path);
-
     if (config.gitCwd && typeof config.gitCwd !== types.string) {
       const error = new PluginError(errorTag, "'gitCwd' must be a string.");
       return callback(error);
     }
+
+    const gitRoot = path.resolve(_file.cwd, config.gitCwd || "");
+    const file = path.relative(gitRoot, _file.path);
 
     git.stage(file, config, streamId, error => {
       if (error) {
