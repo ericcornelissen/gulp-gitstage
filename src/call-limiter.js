@@ -24,6 +24,8 @@ module.exports = {
        * @param  {Function} fn - The function to be called.
        * @param  {...Any} args - The arguments to call the function with.
        * @param  {Function} callback - The function to call when `fn` finished.
+       * @example
+       * schedule(fn, arg1, arg2, callback);
        */
       schedule: function(fn, ...args) {
         limiter.submit.call(limiter, fn, ...args);
