@@ -1,7 +1,7 @@
 const callLimiter = require("../src/call-limiter.js");
 
 const noop = () => {};
-const SLOW_TIMEOUT = 1000;
+const SLOW_TIMEOUT = 250;
 
 let instantSpy, slowSpy;
 
@@ -33,6 +33,8 @@ describe("limiter instance", () => {
 });
 
 describe("call limiting", () => {
+  const HALF_TIMEOUT = Math.floor(SLOW_TIMEOUT / 2) - 1;
+
   test("runs the functions in order", done => {
     const limiter = callLimiter.new({ concurrency: 1 });
 
@@ -52,7 +54,7 @@ describe("call limiting", () => {
     const limiter = callLimiter.new({ concurrency: 1 });
 
     let counter = 0;
-    const interval = setInterval(() => counter++, 499);
+    const interval = setInterval(() => counter++, HALF_TIMEOUT);
 
     limiter.schedule(slowSpy, noop);
     limiter.schedule(slowSpy, noop);
@@ -67,9 +69,8 @@ describe("call limiting", () => {
     const limiter = callLimiter.new({ concurrency: 3 });
 
     let counter = 0;
-    const interval = setInterval(() => counter++, 499);
+    const interval = setInterval(() => counter++, HALF_TIMEOUT);
 
-    // Schedule 9 slow spies, should take 3 seconds
     limiter.schedule(slowSpy, noop);
     limiter.schedule(slowSpy, noop);
     limiter.schedule(slowSpy, noop);
