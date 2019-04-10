@@ -3,7 +3,7 @@ const path = require("path");
 const PluginError = require("plugin-error");
 
 const { errorTag, types } = require("./constants.js");
-const git = require("./git.js");
+const Git = require("./git.js");
 
 /**
  * Exposes the plugin 'gitstage' to be used in {@link https://gulpjs.com/ Gulp}.
@@ -17,7 +17,7 @@ const git = require("./git.js");
  * @return {Stream}                     Identity file stream, does not modify the input.
  */
 module.exports = function(config = {}) {
-  const streamId = Math.random();
+  const git = new Git();
 
   return map((_file, callback) => {
     if (config.gitCwd && typeof config.gitCwd !== types.string) {
@@ -28,7 +28,7 @@ module.exports = function(config = {}) {
     const gitRoot = path.resolve(_file.cwd, config.gitCwd || "");
     const file = path.relative(gitRoot, _file.path);
 
-    git.stage(file, config, streamId, error => {
+    git.stage(file, config, error => {
       if (error) {
         const errorMessage = error.message.split(/\n/)[1];
         const [code, message] = errorMessage.split(/:\s/);
