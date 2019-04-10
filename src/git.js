@@ -98,23 +98,27 @@ function isGitAvailable() {
 }
 
 /**
- * Provides an API to interact with git.
+ * Provides a class with an API to interact with git.
  * @module git
+ * @example
+ * const Git = require('path/to/git.js');
+ * const git = new Git();
  */
-module.exports = {
+module.exports = function() {
+  const id = Math.random();
+
   /**
    * Stage a file in a git repository.
    *
    * @param  {String} file - Path to the file to stage.
    * @param  {String} gitCwd - Relative path to the root of the git repository.
    * @param  {Boolean} stagedOnly - Only stage previously staged files.
-   * @param  {Any} streamId - An identifier to bundle multiple files.
    * @param  {Function} callback - The function to call on completion.
    * @throws {TypeError} Callback is not a function.
    * @throws {Error} The git command is not present.
    * @example
    * const config = {gitCwd: "../", stagedOnly: false};
-   * stage('my-file.js', config, 42, error => {
+   * stage('my-file.js', config, error => {
    *  if (error) {
    *    console.log('Failed.');
    *  } else {
@@ -122,14 +126,14 @@ module.exports = {
    *  }
    * });
    */
-  stage: function(file, config, streamId, callback) {
+  this.stage = function(file, config, callback) {
     if (typeof file !== types.string) {
       callback("file must be a string.");
     } else if (typeof callback !== types.function) {
       throw new TypeError("callback is not a function");
     } else {
-      const stageBuffer = getStageBufferForStream(streamId);
+      const stageBuffer = getStageBufferForStream(id);
       stageBuffer.push(file, config, callback);
     }
-  },
+  };
 };
