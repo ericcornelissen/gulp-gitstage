@@ -2,6 +2,7 @@
 
 [![NPM version][npm-image]][npm-url]
 [![Build Status][build-image]][build-url]
+[![Coverage][codecov-image]][codecov-url]
 [![Dependencies][deps-image]][deps-url]
 [![Greenkeeper][greenkeeper-image]][greenkeeper-url]
 [![License][license-image]][license-url]
@@ -86,6 +87,8 @@ gulp
 [npm-image]: https://badge.fury.io/js/gulp-gitstage.png
 [build-url]: http://travis-ci.com/ericcornelissen/gulp-gitstage
 [build-image]: https://travis-ci.com/ericcornelissen/gulp-gitstage.svg?branch=master
+[codecov-url]: https://codecov.io/gh/ericcornelissen/gulp-gitstage
+[codecov-image]: https://codecov.io/gh/ericcornelissen/gulp-gitstage/branch/master/graph/badge.svg
 [deps-url]: https://david-dm.org/ericcornelissen/gulp-gitstage
 [deps-image]: https://david-dm.org/ericcornelissen/gulp-gitstage/status.svg
 [greenkeeper-url]: https://greenkeeper.io/
