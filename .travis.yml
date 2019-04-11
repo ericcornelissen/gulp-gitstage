@@ -1,14 +1,26 @@
-language: node_js
-node_js:
-  - "8.11.0"
+jobs:
+  include:
+    - stage: "Test"
+      name: "Lint"
+      language: node_js
+      node_js:
+        - "8.11.0"
+      install:
+        - npm install
+      script:
+        - npm run lint
 
-install:
-  - npm install
-  - npm install -g codecov
-script:
-  - npm run test:coverage
-after_script:
-  - codecov
+    - name: "Test"
+      language: node_js
+      node_js:
+        - "8.11.0"
+      install:
+        - npm install
+        - npm install -g codecov
+      script:
+        - npm run test:coverage
+      after_script:
+        - codecov
 
 notifications:
   email:
