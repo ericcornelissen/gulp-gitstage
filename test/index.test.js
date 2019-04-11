@@ -91,11 +91,10 @@ describe("Unsuccessful execution", () => {
   const gitError = `${gitErrorLevel}: ${gitErrorMessage}`;
 
   beforeEach(() => {
+    // Mock `execFile` such that it fails, the behaviour is based on:
+    // https://nodejs.org/api/child_process.html
     process.execFile.mockImplementation((file, args, options, callback) => {
       const error = generateError(`Command failed: git add\n${gitError}`);
-
-      // The behaviour of this mock is based on:
-      // https://nodejs.org/api/child_process.html
       callback(error, stdin, stdout);
     });
   });

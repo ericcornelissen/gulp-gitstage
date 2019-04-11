@@ -117,9 +117,9 @@ describe("git.stage - git errors", () => {
   const error = new Error("execution failed.");
 
   beforeEach(() => {
+    // Mock `execFile` such that it fails, the behaviour is based on:
+    // https://nodejs.org/api/child_process.html
     process.execFile.mockImplementation((file, args, options, callback) => {
-      // The behaviour of this mock is based on:
-      // https://nodejs.org/api/child_process.html
       callback(error, stdin, stdout);
     });
   });
