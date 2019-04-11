@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+/**
+ * @fileoverview
+ * Outputs the '--version' information of several programs relevant to this
+ * project. Useful in bug reports.
+ */
 
 const exec = require("child_process").exec;
 
