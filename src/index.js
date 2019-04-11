@@ -17,21 +17,21 @@ const log = require("./log.js");
  * @param  {Boolean} [stagedOnly=false] - Only stage previously staged files.
  * @return {Stream} Identity file stream, does not modify the input.
  */
-module.exports = function(config = {}) {
+module.exports = function(options = {}) {
   const git = new Git();
 
-  log.debug("creating stream, config: %O", config);
+  log.debug("creating stream, options: %O", options);
   return map((_file, callback) => {
-    if (config.gitCwd && typeof config.gitCwd !== types.string) {
+    if (options.gitCwd && typeof options.gitCwd !== types.string) {
       const error = new PluginError(pluginTag, "'gitCwd' must be a string.");
       return callback(error);
     }
 
-    const gitRoot = path.resolve(_file.cwd, config.gitCwd || "");
+    const gitRoot = path.resolve(_file.cwd, options.gitCwd || "");
     const file = path.relative(gitRoot, _file.path);
 
     log.debug("staging '%s'", file);
-    git.stage(file, config, error => {
+    git.stage(file, options, error => {
       if (error) {
         log.debug("stage failed on '%s' | %O", file, error);
 

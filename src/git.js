@@ -49,7 +49,7 @@ function gitExecute(args, _options, callback) {
  * @return {StageBuffer} The buffer that can be used to add files.
  * @example
  * const stageBuffer = getStageBufferForStream(42);
- * stageBuffer.push(file, config, callback)
+ * stageBuffer.push(file, options, callback)
  */
 function getStageBufferForStream(id) {
   const debounce = require("debounce");
@@ -58,15 +58,15 @@ function getStageBufferForStream(id) {
     const callbacks = [];
     const files = [];
 
-    const db = debounce(function(config) {
+    const db = debounce(function(options) {
       STAGE_BUFFERS[id] = undefined;
       log.debug("staging files for %f: %O", id, files);
 
       const args = [add];
-      if (config.stagedOnly) args.push(update);
+      if (options.stagedOnly) args.push(update);
       Array.prototype.push.apply(args, files);
 
-      gitExecute(args, config, (error, stdin, stdout) => {
+      gitExecute(args, options, (error, stdin, stdout) => {
         for (const callback of callbacks) {
           callback(error, stdin, stdout);
         }
@@ -74,10 +74,10 @@ function getStageBufferForStream(id) {
     }, BUFFER_DELAY);
 
     STAGE_BUFFERS[id] = {
-      push: function(file, config, callback) {
+      push: function(file, options, callback) {
         callbacks.push(callback);
         files.push(file);
-        db(config);
+        db(options);
       },
     };
   }
@@ -122,8 +122,8 @@ module.exports = function() {
    * @throws {TypeError} Callback is not a function.
    * @throws {Error} The git command is not present.
    * @example
-   * const config = {gitCwd: "../", stagedOnly: false};
-   * stage('my-file.js', config, error => {
+   * const options = {gitCwd: "../", stagedOnly: false};
+   * stage('my-file.js', options, error => {
    *  if (error) {
    *    console.log('Failed.');
    *  } else {
@@ -131,14 +131,14 @@ module.exports = function() {
    *  }
    * });
    */
-  this.stage = function(file, config, callback) {
+  this.stage = function(file, options, callback) {
     if (typeof file !== types.string) {
       callback("file must be a string.");
     } else if (typeof callback !== types.function) {
       throw new TypeError("callback is not a function");
     } else {
       const stageBuffer = getStageBufferForStream(id);
-      stageBuffer.push(file, config, callback);
+      stageBuffer.push(file, options, callback);
     }
   };
 };
