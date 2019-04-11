@@ -34,9 +34,9 @@ function gitExecute(args, _options, callback) {
     cwd: _options.gitCwd,
   };
 
-  const options = Object.assign(DEFAULT_OPTIONS, runOption);
-
   log.debug("running '%s %s', options %O", git, args.join(" "), runOption);
+
+  const options = Object.assign(DEFAULT_OPTIONS, runOption);
   return limiter.schedule(exec, git, args, options, callback);
 }
 
