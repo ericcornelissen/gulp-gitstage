@@ -9,14 +9,14 @@ const gitstage = require("../src/index.js");
 
 const files = path.join(__dirname, "./fixtures/*.txt");
 
-test("returns a stream", () => {
+test("The plugin returns a stream", () => {
   const subject = gitstage();
   expect(subject).toHaveProperty("on");
   expect(subject).toHaveProperty("write");
 });
 
-describe("successful execution", () => {
-  test("stage at least one file on git", done => {
+describe("Successful execution", () => {
+  test("Stage at least one file on git", done => {
     gulp
       .src(files)
       .pipe(gitstage())
@@ -29,7 +29,7 @@ describe("successful execution", () => {
       );
   });
 
-  test("it tries to stage something", done => {
+  test("Makes a call to execute 'git'", done => {
     let fileList = [];
 
     gulp
@@ -39,7 +39,7 @@ describe("successful execution", () => {
       .pipe(
         each(() => {
           expect(process.execFile).toHaveBeenCalledWith(
-            expect.anything(),
+            command.git,
             expect.arrayContaining([command.add]),
             expect.anything(),
             expect.anything(),
@@ -50,7 +50,7 @@ describe("successful execution", () => {
       );
   });
 
-  test("stages all files in the stream", done => {
+  test("Stages all files in the stream", done => {
     let fileList = [];
 
     gulp
@@ -75,7 +75,7 @@ describe("successful execution", () => {
   });
 });
 
-describe("unsuccessful execution", () => {
+describe("Unsuccessful execution", () => {
   const generateError = message => {
     const error = new Error(message);
     error.killed = false;
@@ -91,16 +91,15 @@ describe("unsuccessful execution", () => {
   const gitError = `${gitErrorLevel}: ${gitErrorMessage}`;
 
   beforeEach(() => {
+    // Mock `execFile` such that it fails, the behaviour is based on:
+    // https://nodejs.org/api/child_process.html
     process.execFile.mockImplementation((file, args, options, callback) => {
       const error = generateError(`Command failed: git add\n${gitError}`);
-
-      // The behaviour of this mock is based on:
-      // https://nodejs.org/api/child_process.html
       callback(error, stdin, stdout);
     });
   });
 
-  test("emits an error if the file could not be added", done => {
+  test("Emits an error if the file could not be added", done => {
     gulp
       .src(files)
       .pipe(gitstage())
@@ -109,7 +108,7 @@ describe("unsuccessful execution", () => {
       });
   });
 
-  test("the error message is derived from the git error", done => {
+  test("The error message is derived from the git error", done => {
     gulp
       .src(files)
       .pipe(gitstage())
@@ -126,7 +125,7 @@ describe("unsuccessful execution", () => {
 });
 
 describe("Configuration", () => {
-  test("the 'gitCwd' option is used", done => {
+  test("The 'gitCwd' option is used", done => {
     let customCwd = "../foo";
     gulp
       .src(files)
@@ -152,13 +151,13 @@ describe("Configuration", () => {
       );
   });
 
-  test("the 'gitCwd' option must be a string", () => {
+  test("The 'gitCwd' option must be a string", () => {
     const subject = gitstage({ gitCwd: ["not", "a", "string"] });
     expect(subject).toHaveProperty("write");
     expect(subject.write).toThrow();
   });
 
-  test("the 'stagedOnly' option is used when true", done => {
+  test("The 'stagedOnly' option is used when true", done => {
     gulp
       .src(files)
       .pipe(
@@ -181,7 +180,7 @@ describe("Configuration", () => {
       );
   });
 
-  test("the 'stagedOnly' option is not used when false", done => {
+  test("The 'stagedOnly' option is not used when false", done => {
     gulp
       .src(files)
       .pipe(
@@ -208,7 +207,7 @@ describe("Configuration", () => {
       );
   });
 
-  test("the 'stagedOnly' option is not used by default", done => {
+  test("The 'stagedOnly' option is not used by default", done => {
     gulp
       .src(files)
       .pipe(gitstage())

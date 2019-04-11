@@ -6,6 +6,8 @@ const SLOW_TIMEOUT = 250;
 let instantSpy, slowSpy;
 
 beforeEach(() => {
+  // Create spies that can be used to test the scheduling
+  // of functions offered by the API
   const getCallback = args => args[args.length - 1];
 
   instantSpy = jest.fn(function() {
@@ -18,24 +20,22 @@ beforeEach(() => {
   });
 });
 
-test("new property", () => {
+test("Has a 'new' property that can be used to create a new limiter", () => {
   expect(callLimiter).toHaveProperty("new");
   expect(callLimiter.new).toBeInstanceOf(Function);
 });
 
-describe("limiter instance", () => {
-  test("schedule property", () => {
-    const limiter = callLimiter.new({ concurrency: 1 });
+test("A limiter instance has a 'schedule' property", () => {
+  const limiter = callLimiter.new({ concurrency: 1 });
 
-    expect(limiter).toHaveProperty("schedule");
-    expect(limiter.schedule).toBeInstanceOf(Function);
-  });
+  expect(limiter).toHaveProperty("schedule");
+  expect(limiter.schedule).toBeInstanceOf(Function);
 });
 
-describe("call limiting", () => {
+describe("Call limiting", () => {
   const HALF_TIMEOUT = Math.floor(SLOW_TIMEOUT / 2) - 1;
 
-  test("runs the functions in order", done => {
+  test("Runs the functions in order", done => {
     const limiter = callLimiter.new({ concurrency: 1 });
 
     limiter.schedule(instantSpy, () => {
@@ -50,7 +50,7 @@ describe("call limiting", () => {
     });
   });
 
-  test("limit to one call at the time", done => {
+  test("Limits to one call at the time", done => {
     const limiter = callLimiter.new({ concurrency: 1 });
 
     let counter = 0;
@@ -65,7 +65,7 @@ describe("call limiting", () => {
     });
   });
 
-  test("limit to three calls at the time", done => {
+  test("Limits to three calls at the time", done => {
     const limiter = callLimiter.new({ concurrency: 3 });
 
     let counter = 0;
@@ -89,7 +89,7 @@ describe("call limiting", () => {
   });
 });
 
-describe("argument passing", () => {
+describe("Argument passing", () => {
   const arg1 = "foobar";
   const arg2 = 42;
   const arg3 = "The cake is a lie";
@@ -98,10 +98,11 @@ describe("argument passing", () => {
   let limiter;
 
   beforeEach(() => {
+    // Instantiate a limiter to be used in this test suite
     limiter = callLimiter.new({ concurrency: 1 });
   });
 
-  test("0 arguments", done => {
+  test("Passes 0 arguments to the function", done => {
     limiter.schedule(instantSpy, () => {
       expect(instantSpy).toHaveBeenCalledWith(expect.any(Function));
 
@@ -109,7 +110,7 @@ describe("argument passing", () => {
     });
   });
 
-  test("1 argument", done => {
+  test("Passes 1 argument to the function", done => {
     limiter.schedule(instantSpy, arg1, () => {
       expect(instantSpy).toHaveBeenCalledWith(arg1, expect.any(Function));
 
@@ -117,7 +118,7 @@ describe("argument passing", () => {
     });
   });
 
-  test("2 arguments", done => {
+  test("Passes 2 arguments to the function", done => {
     limiter.schedule(instantSpy, arg1, arg2, () => {
       expect(instantSpy).toHaveBeenCalledWith(arg1, arg2, expect.any(Function));
 
@@ -125,7 +126,7 @@ describe("argument passing", () => {
     });
   });
 
-  test("3 arguments", done => {
+  test("Passes 3 arguments to the function", done => {
     limiter.schedule(instantSpy, arg1, arg2, arg3, () => {
       expect(instantSpy).toHaveBeenCalledWith(
         arg1,
@@ -138,7 +139,7 @@ describe("argument passing", () => {
     });
   });
 
-  test("4 arguments", done => {
+  test("Passes 4 arguments to the function", done => {
     limiter.schedule(instantSpy, arg1, arg2, arg3, arg4, () => {
       expect(instantSpy).toHaveBeenCalledWith(
         arg1,

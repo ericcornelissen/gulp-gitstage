@@ -13,20 +13,20 @@ beforeEach(() => {
   git = new Git();
 });
 
-test("can be used to execute the 'git add' command", () => {
+test("Can be used to execute the 'git add' command", () => {
   expect(git).toHaveProperty("stage");
   expect(git.stage).toBeInstanceOf(Function);
 });
 
-describe("successful execution", () => {
-  test("calls execFile", done => {
+describe("git.stage - git succeeds", () => {
+  test("Calls execFile", done => {
     git.stage(file, {}, () => {
       expect(process.execFile).toHaveBeenCalled();
       done();
     });
   });
 
-  test("attempts to execute git", done => {
+  test("Attempts to execute git", done => {
     git.stage(file, {}, () => {
       expect(process.execFile).toHaveBeenCalledWith(
         command.git,
@@ -39,7 +39,7 @@ describe("successful execution", () => {
     });
   });
 
-  test("attempts to add the file", done => {
+  test("Attempts to add the file", done => {
     git.stage(file, {}, () => {
       expect(process.execFile).toHaveBeenCalledWith(
         expect.anything(),
@@ -52,7 +52,7 @@ describe("successful execution", () => {
     });
   });
 
-  test("provides an object as options", done => {
+  test("Provides an object as options", done => {
     git.stage(file, {}, () => {
       expect(process.execFile).toHaveBeenCalledWith(
         expect.anything(),
@@ -65,7 +65,7 @@ describe("successful execution", () => {
     });
   });
 
-  test("attempts to execute git", done => {
+  test("Provides a callback function", done => {
     git.stage(file, {}, () => {
       expect(process.execFile).toHaveBeenCalledWith(
         expect.anything(),
@@ -78,39 +78,39 @@ describe("successful execution", () => {
     });
   });
 
-  test("the first parameter of the callback", done => {
+  test("The first parameter of the callback", done => {
     git.stage(file, {}, a => {
       expect(a).toBeNull();
       done();
     });
   });
 
-  test("the second parameter of the callback", done => {
+  test("The second parameter of the callback", done => {
     git.stage(file, {}, (a, b) => {
       expect(b).toBe(stdin);
       done();
     });
   });
 
-  test("the third parameter of the callback", done => {
+  test("The third parameter of the callback", done => {
     git.stage(file, {}, (a, b, c) => {
       expect(c).toBe(stdout);
       done();
     });
   });
 
-  test("gives an error if file is not a string", done => {
+  test("Gives an error if file is not a string", done => {
     git.stage(() => true, {}, error => {
       expect(error).not.toBeNull();
       done();
     });
   });
 
-  test("throws an error if callback is not a function", () => {
+  test("Throws an error if callback is not a function", () => {
     expect(() => git.stage("", {}, false)).toThrowError(TypeError);
   });
 
-  test("does not attempt to execute git if file is not a string", done => {
+  test("Does not attempt to execute git if file is not a string", done => {
     git.stage(() => true, {}, error => {
       expect(process.execFile).not.toHaveBeenCalled();
       done();
@@ -118,18 +118,18 @@ describe("successful execution", () => {
   });
 });
 
-describe("unsuccessful execution", () => {
+describe("git.stage - git errors", () => {
   const error = new Error("execution failed.");
 
   beforeEach(() => {
+    // Mock `execFile` such that it fails, the behaviour is based on:
+    // https://nodejs.org/api/child_process.html
     process.execFile.mockImplementation((file, args, options, callback) => {
-      // The behaviour of this mock is based on:
-      // https://nodejs.org/api/child_process.html
       callback(error, stdin, stdout);
     });
   });
 
-  test("the first parameter of the callback", done => {
+  test("The first parameter of the callback", done => {
     git.stage(file, {}, error => {
       expect(error).not.toBeNull();
       done();
