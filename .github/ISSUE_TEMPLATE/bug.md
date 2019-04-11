@@ -16,6 +16,18 @@ labels: bug
 
 <!-- find `gulp-gitstage` in your package.json and put the version here -->
 
+###### Logs
+
+<!--
+Run the failing task with the -LLLL option (verbose logging) and report the
+output here. For example:
+$ gulp the_failing_task -LLLL
+-->
+
+```
+<logs go here>
+```
+
 ## Bug description
 
 <!-- Describe the bug, provide context and as much details as possible -->

@@ -9,6 +9,10 @@ Versioning].
 
 -
 
+### Added
+
+- Debug/verbose logging. ([#48])
+
 ### Changed
 
 - Abstract dependencies behind local modules. ([#42])
@@ -74,3 +78,4 @@ create a gulp plugin to stage files :tada:
 [#41]: https://github.com/ericcornelissen/gulp-gitstage/pull/41
 [#42]: https://github.com/ericcornelissen/gulp-gitstage/pull/42
 [#47]: https://github.com/ericcornelissen/gulp-gitstage/pull/47
+[#48]: https://github.com/ericcornelissen/gulp-gitstage/pull/48

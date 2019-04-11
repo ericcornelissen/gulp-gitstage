@@ -6,6 +6,7 @@ const { each, reduce, stdin, stdout } = require("./utils.js");
 
 const command = require("../src/constants.js");
 const gitstage = require("../src/index.js");
+const log = require("../src/log.js");
 
 const files = path.join(__dirname, "./fixtures/*.txt");
 
@@ -115,6 +116,20 @@ describe("Unsuccessful execution", () => {
       .on("error", error => {
         expect(error.message).toMatch(gitErrorLevel);
         expect(error.message).toMatch(gitErrorMessage);
+        done();
+      });
+  });
+
+  test("Logs an error in verbose mode", done => {
+    gulp
+      .src(files)
+      .pipe(gitstage())
+      .on("error", error => {
+        expect(log.debug).toHaveBeenCalledWith(
+          expect.stringContaining("failed"),
+          expect.any(String),
+          expect.anything(),
+        );
         done();
       });
   });

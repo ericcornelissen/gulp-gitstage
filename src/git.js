@@ -1,5 +1,6 @@
 const callLimiter = require("./call-limiter.js");
 const { add, git, types, update } = require("./constants.js");
+const log = require("./log.js");
 
 const BUFFER_DELAY = 150;
 const DEFAULT_OPTIONS = { env: process.env };
@@ -29,10 +30,13 @@ function gitExecute(args, _options, callback) {
     throw new Error("git not found on your system.");
   }
 
-  const options = Object.assign(DEFAULT_OPTIONS, {
+  const runOption = {
     cwd: _options.gitCwd,
-  });
+  };
 
+  log.debug("running '%s %s', options %O", git, args.join(" "), runOption);
+
+  const options = Object.assign(DEFAULT_OPTIONS, runOption);
   return limiter.schedule(exec, git, args, options, callback);
 }
 
@@ -56,6 +60,7 @@ function getStageBufferForStream(id) {
 
     const db = debounce(function(config) {
       STAGE_BUFFERS[id] = undefined;
+      log.debug("staging files for %f: %O", id, files);
 
       const args = [add];
       if (config.stagedOnly) args.push(update);

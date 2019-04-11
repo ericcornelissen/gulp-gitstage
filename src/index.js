@@ -2,8 +2,9 @@ const map = require("map-stream");
 const path = require("path");
 const PluginError = require("plugin-error");
 
-const { errorTag, types } = require("./constants.js");
+const { pluginTag, types } = require("./constants.js");
 const Git = require("./git.js");
+const log = require("./log.js");
 
 /**
  * Exposes the plugin 'gitstage' to be used in {@link https://gulpjs.com/ Gulp}.
@@ -19,27 +20,32 @@ const Git = require("./git.js");
 module.exports = function(config = {}) {
   const git = new Git();
 
+  log.debug("creating stream, config: %O", config);
   return map((_file, callback) => {
     if (config.gitCwd && typeof config.gitCwd !== types.string) {
-      const error = new PluginError(errorTag, "'gitCwd' must be a string.");
+      const error = new PluginError(pluginTag, "'gitCwd' must be a string.");
       return callback(error);
     }
 
     const gitRoot = path.resolve(_file.cwd, config.gitCwd || "");
     const file = path.relative(gitRoot, _file.path);
 
+    log.debug("staging '%s'", file);
     git.stage(file, config, error => {
       if (error) {
+        log.debug("stage failed on '%s' | %O", file, error);
+
         const errorMessage = error.message.split(/\n/)[1];
         const [code, message] = errorMessage.split(/:\s/);
 
         error = new PluginError(
-          errorTag,
+          pluginTag,
           `git add failed: ${message} (${code}).`,
         );
 
         callback(error);
       } else {
+        log.debug("staged '%s'", file);
         callback(0, file);
       }
     });

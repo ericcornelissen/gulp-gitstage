@@ -4,10 +4,10 @@
  */
 module.exports = {
   /**
-   * Tag that should be used for errors thrown by the package.
+   * String that should be used for output from the plugin.
    * @constant {String}
    */
-  errorTag: "gulp-gitstage",
+  pluginTag: "gulp-gitstage",
 
   /* === git commands\options === */
 
