@@ -1,6 +1,7 @@
 node_modules/
 
 # generated files
-_reports
+_reports/
+_docs/
 .DS_Store
 npm-debug.log
