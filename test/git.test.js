@@ -5,6 +5,7 @@ const { stdin, stdout } = require("./utils.js");
 
 const command = require("../src/constants.js");
 const git = require("../src/git.js");
+const log = require("../src/log.js");
 
 const file = path.join(__dirname, "./fixtures/a.txt");
 
@@ -108,6 +109,18 @@ describe("successful execution", () => {
   test("does not attempt to execute git if file is not a string", done => {
     git.stage(() => true, {}, 0.1337, error => {
       expect(process.execFile).not.toHaveBeenCalled();
+      done();
+    });
+  });
+
+  test("logs the command it will execute", done => {
+    git.stage(() => true, {}, 0.36, error => {
+      expect(log.debug).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.any(String),
+        expect.any(String),
+        expect.any(Object),
+      );
       done();
     });
   });

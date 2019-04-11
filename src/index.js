@@ -20,7 +20,7 @@ const log = require("./log.js");
 module.exports = function(config = {}) {
   const streamId = Math.random();
 
-  log.debug("creating stream [id=%f]: %O", streamId, config);
+  log.debug("creating stream [id=%f], config: %O", streamId, config);
   return map((_file, callback) => {
     const gitRoot = path.resolve(_file.cwd, config.gitCwd || "");
     const file = path.relative(gitRoot, _file.path);

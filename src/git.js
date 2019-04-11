@@ -1,5 +1,6 @@
 const callLimiter = require("./call-limiter.js");
 const { add, git, types, update } = require("./constants.js");
+const log = require("./log.js");
 
 const BUFFER_DELAY = 150;
 const DEFAULT_OPTIONS = { env: process.env };
@@ -29,10 +30,13 @@ function gitExecute(args, _options, callback) {
     throw new Error("git not found on your system.");
   }
 
-  const options = Object.assign(DEFAULT_OPTIONS, {
+  const runOption = {
     cwd: _options.gitCwd,
-  });
+  };
 
+  const options = Object.assign(DEFAULT_OPTIONS, runOption);
+
+  log.debug("running '%s %s', options %O", git, args.join(" "), runOption);
   return limiter.schedule(exec, git, args, options, callback);
 }
 
