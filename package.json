@@ -18,6 +18,7 @@
     "git add"
   ],
   "scripts": {
+    "clean": "rimraf ./_docs ./_reports",
     "debug:versions": "node scripts/versions.js",
     "docs:build": "jsdoc src/ -d _docs",
     "example": "gulp --gulpfile test/fixtures/gulpfile.js -LLLL",
