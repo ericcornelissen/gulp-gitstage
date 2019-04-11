@@ -20,6 +20,7 @@
   "scripts": {
     "debug:versions": "node scripts/versions.js",
     "example": "gulp --gulpfile test/fixtures/gulpfile.js -LLLL",
+    "lint": "prettier **/*.{js,md} --check",
     "prettier": "prettier **/*.{js,md} --write",
     "test": "jest",
     "test:coverage": "jest --coverage"
