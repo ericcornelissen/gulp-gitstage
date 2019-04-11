@@ -23,7 +23,7 @@ module.exports = function(config = {}) {
   log.debug("creating stream, config: %O", config);
   return map((_file, callback) => {
     if (config.gitCwd && typeof config.gitCwd !== types.string) {
-      const error = new PluginError(errorTag, "'gitCwd' must be a string.");
+      const error = new PluginError(pluginTag, "'gitCwd' must be a string.");
       return callback(error);
     }
 
