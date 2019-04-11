@@ -4,17 +4,16 @@ about: Report a bug with gulp-gitstage
 labels: bug
 ---
 
-###### NodeJS version
+###### Versions
 
-<!-- run `node --version` from your command line and put the output here -->
+<!--
+Run the following script to get some version information and report it here:
+$ npm run debug:versions
+-->
 
-###### Gulp version
-
-<!-- run `gulp --version` from your command line and put the output here -->
-
-###### gulp-gitstage version
-
-<!-- find `gulp-gitstage` in your package.json and put the version here -->
+```
+<version information goes here>
+```
 
 ###### Logs
 

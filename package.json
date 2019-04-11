@@ -18,6 +18,7 @@
     "git add"
   ],
   "scripts": {
+    "debug:versions": "node scripts/versions.js",
     "example": "gulp --gulpfile test/fixtures/gulpfile.js -LLLL",
     "prettier": "prettier **/*.{js,md} --write",
     "test": "jest",
