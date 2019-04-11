@@ -1,4 +1,5 @@
 # configuration files
+.codecov.yml
 .editorconfig
 .gitattributes
 .huskyrc
@@ -10,3 +11,6 @@ jest.config.js
 # directories
 .github/
 test/*
+
+# generated files
+_reports/
