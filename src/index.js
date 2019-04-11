@@ -12,7 +12,7 @@ const log = require("./log.js");
  * the stream (unless configured otherwise) to a {@link https://git-scm.com/
  * git} repository.
  *
- * @exports gulp-gitstage
+ * @exports gitstage
  * @param  {String} [gitCwd=cwd] - Override from which directory git is executed.
  * @param  {Boolean} [stagedOnly=false] - Only stage previously staged files.
  * @return {Stream} Identity file stream, does not modify the input.

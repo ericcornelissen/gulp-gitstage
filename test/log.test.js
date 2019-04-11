@@ -6,7 +6,7 @@ jest.unmock("../src/log.js");
 jest.mock("gulplog");
 
 describe("Debug", () => {
-  test("logs a message", () => {
+  test("Logs a message", () => {
     const message = "Hello world!";
 
     log.debug(message);
@@ -15,7 +15,7 @@ describe("Debug", () => {
     );
   });
 
-  test("logs a message formatted with a string", () => {
+  test("Logs a message formatted with a string", () => {
     const message = "Hello %s!";
     const arg1 = "foobar";
 
@@ -26,7 +26,7 @@ describe("Debug", () => {
     );
   });
 
-  test("logs a message formatted with two arguments", () => {
+  test("Logs a message formatted with two arguments", () => {
     const message = "There are not the %s you're looking for: %O";
     const arg1 = "droids";
     const arg2 = ["R2-D2", "C-3PO", "DD-8"];

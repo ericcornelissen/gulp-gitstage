@@ -45,7 +45,7 @@ function gitExecute(args, _options, callback) {
  * pushed such that in the end only a single `git add` command is executed.
  *
  * @private
- * @param {Any} id - A unique identifier for a stream.
+ * @param  {Any} id - A unique identifier for a stream.
  * @return {StageBuffer} The buffer that can be used to add files.
  * @example
  * const stageBuffer = getStageBufferForStream(42);

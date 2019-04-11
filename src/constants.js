@@ -38,8 +38,8 @@ module.exports = {
    * Strings denoting the typeof variables.
    *
    * @constant
-   * @property {String} function The name of tye type Function.
-   * @property {String} string The name of the type String.
+   * @property {String} function - The name of tye type Function.
+   * @property {String} string - The name of the type String.
    * @example
    * const fn = () => 42
    * typeof fn === types.string

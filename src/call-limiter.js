@@ -6,8 +6,8 @@ module.exports = {
   /**
    * Create a new call limiter.
    *
-   * @param  {Number} concurrency The maximum number of calls running in parellel.
-   * @return {Object}             An object with the function schedule.
+   * @param  {Number} concurrency - The maximum number of calls running in parellel.
+   * @return {Object} An object with the function schedule.
    * @example
    * const limiter = new({concurrency: 1});
    * limiter.schedule(fn, arg1, arg2, ..., argN, callback);
@@ -21,9 +21,11 @@ module.exports = {
        * Schedule a new function to be called by the scheduler.
        *
        * @private
-       * @param  {Function} fn       The function to be called.
-       * @param  {...Any}   args     The arguments to call the function with.
-       * @param  {Function} callback The function to call when `fn` finished.
+       * @param  {Function} fn - The function to be called.
+       * @param  {...Any} args - The arguments to call the function with.
+       * @param  {Function} callback - The function to call when `fn` finished.
+       * @example
+       * schedule(fn, arg1, arg2, callback);
        */
       schedule: function(fn, ...args) {
         limiter.submit.call(limiter, fn, ...args);
