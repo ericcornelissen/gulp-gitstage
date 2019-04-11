@@ -60,6 +60,7 @@ function getStageBufferForStream(id) {
 
     const db = debounce(function(config) {
       STAGE_BUFFERS[id] = undefined;
+      log.debug("staging files for %f: %O", id, files);
 
       const args = [add];
       if (config.stagedOnly) args.push(update);
