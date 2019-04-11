@@ -1,3 +1,5 @@
+const { types } = require("./constants.js");
+
 /**
  * Provides a function to debounce calls to a specific function.
  * @module debounce
@@ -12,5 +14,12 @@
  */
 module.exports = function(fn, timeout) {
   const debounce = require("debounce");
-  return debounce(fn, timeout, false);
+
+  if (typeof fn !== types.function) {
+    throw new TypeError("fn is not a function");
+  } else if (typeof timeout !== types.number) {
+    throw new TypeError("timeout is not a number");
+  } else {
+    return debounce(fn, timeout, false);
+  }
 };

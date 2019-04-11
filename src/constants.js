@@ -46,6 +46,7 @@ module.exports = {
    */
   types: {
     function: "function",
+    number: "number",
     string: "string",
   },
 };
