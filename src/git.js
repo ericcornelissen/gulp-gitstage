@@ -1,5 +1,6 @@
 const callLimiter = require("./call-limiter.js");
 const { add, git, types, update } = require("./constants.js");
+const debounce = require("./debounce.js");
 const log = require("./log.js");
 
 const BUFFER_DELAY = 150;
@@ -52,8 +53,6 @@ function gitExecute(args, _options, callback) {
  * stageBuffer.push(file, options, callback)
  */
 function getStageBufferForStream(id) {
-  const debounce = require("debounce");
-
   if (STAGE_BUFFERS[id] === undefined) {
     const callbacks = [];
     const files = [];
