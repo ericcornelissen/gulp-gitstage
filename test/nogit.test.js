@@ -1,5 +1,5 @@
 const gitstage = require("../src/index.js");
-const git = require("../src/git.js");
+const Git = require("../src/git.js");
 
 beforeAll(() => {
   // Clear the PATH so git definitely cannot be found
@@ -13,5 +13,6 @@ test("the plugin throws", () => {
 });
 
 test("the 'stage' function throws if git is not available", () => {
+  const git = new Git();
   expect(git.stage).toThrow();
 });

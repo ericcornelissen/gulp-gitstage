@@ -3,7 +3,7 @@ const path = require("path");
 const PluginError = require("plugin-error");
 
 const { pluginTag, types } = require("./constants.js");
-const git = require("./git.js");
+const Git = require("./git.js");
 const log = require("./log.js");
 
 /**
@@ -18,20 +18,20 @@ const log = require("./log.js");
  * @return {Stream} Identity file stream, does not modify the input.
  */
 module.exports = function(config = {}) {
-  const streamId = Math.random();
+  const git = new Git();
 
-  log.debug("creating stream [id=%f], config: %O", streamId, config);
+  log.debug("creating stream, config: %O", config);
   return map((_file, callback) => {
-    const gitRoot = path.resolve(_file.cwd, config.gitCwd || "");
-    const file = path.relative(gitRoot, _file.path);
-
     if (config.gitCwd && typeof config.gitCwd !== types.string) {
       const error = new PluginError(errorTag, "'gitCwd' must be a string.");
       return callback(error);
     }
 
+    const gitRoot = path.resolve(_file.cwd, config.gitCwd || "");
+    const file = path.relative(gitRoot, _file.path);
+
     log.debug("staging '%s'", file);
-    git.stage(file, config, streamId, error => {
+    git.stage(file, config, error => {
       if (error) {
         log.debug("stage failed on '%s' | %O", file, error);
 

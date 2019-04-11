@@ -1,8 +1,9 @@
 # gulp-gitstage
 
 [![NPM version][npm-image]][npm-url]
-[![Build Status][build-image]][build-url]
-[![Dependencies][deps-image]][deps-url]
+[![Build status][travisci-image]][travisci-url]
+[![Coverage][codecov-image]][codecov-url]
+[![Dependencies][daviddm-image]][daviddm-url]
 [![Greenkeeper][greenkeeper-image]][greenkeeper-url]
 [![License][license-image]][license-url]
 [![Prettier][prettier-image]][prettier-url]
@@ -38,10 +39,10 @@ files.on("data", function(file) {
 This plugin takes a single object as configuration. The available options are
 listed below. Note that all options are optional.
 
-| option       | description                                    |
-| ------------ | ---------------------------------------------- |
-| `gitCwd`     | Override from which directory git is executed. |
-| `stagedOnly` | Only stage previously staged files.            |
+| option       | type    | description                                    | default |
+| ------------ | ------- | ---------------------------------------------- | ------- |
+| `gitCwd`     | String  | Override from which directory git is executed. | `"./"`  |
+| `stagedOnly` | Boolean | Only stage previously staged files.            | `false` |
 
 #### Examples
 
@@ -84,10 +85,12 @@ gulp
 
 [npm-url]: https://npmjs.org/package/gulp-gitstage
 [npm-image]: https://badge.fury.io/js/gulp-gitstage.png
-[build-url]: http://travis-ci.com/ericcornelissen/gulp-gitstage
-[build-image]: https://travis-ci.com/ericcornelissen/gulp-gitstage.svg?branch=master
-[deps-url]: https://david-dm.org/ericcornelissen/gulp-gitstage
-[deps-image]: https://david-dm.org/ericcornelissen/gulp-gitstage/status.svg
+[travisci-url]: http://travis-ci.com/ericcornelissen/gulp-gitstage
+[travisci-image]: https://travis-ci.com/ericcornelissen/gulp-gitstage.svg?branch=master
+[codecov-url]: https://codecov.io/gh/ericcornelissen/gulp-gitstage
+[codecov-image]: https://codecov.io/gh/ericcornelissen/gulp-gitstage/branch/master/graph/badge.svg
+[daviddm-url]: https://david-dm.org/ericcornelissen/gulp-gitstage
+[daviddm-image]: https://david-dm.org/ericcornelissen/gulp-gitstage/status.svg
 [greenkeeper-url]: https://greenkeeper.io/
 [greenkeeper-image]: https://badges.greenkeeper.io/ericcornelissen/gulp-gitstage.svg
 [license-url]: https://opensource.org/licenses/MIT
