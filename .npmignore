@@ -4,13 +4,15 @@
 .gitattributes
 .huskyrc
 .prettierrc
+.prettierignore
 .travis.yml
 commitlint.config.js
 jest.config.js
 
 # directories
 .github/
-test/*
+scripts/
+test/
 
 # generated files
 _reports/
