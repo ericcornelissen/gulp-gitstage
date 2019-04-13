@@ -1,8 +1,8 @@
 const gulplog = require("gulplog");
 
-const log = require("../src/log.js");
+const log = require("../src/utils/log.js");
 
-jest.unmock("../src/log.js");
+jest.unmock("../src/utils/log.js");
 jest.mock("gulplog");
 
 describe("Debug", () => {

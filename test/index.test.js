@@ -4,9 +4,9 @@ const path = require("path");
 
 const { each, reduce, stdin, stdout } = require("./utils.js");
 
-const command = require("../src/constants.js");
 const gitstage = require("../src/index.js");
-const log = require("../src/log.js");
+const command = require("../src/utils/constants.js");
+const log = require("../src/utils/log.js");
 
 const files = path.join(__dirname, "./fixtures/*.txt");
 

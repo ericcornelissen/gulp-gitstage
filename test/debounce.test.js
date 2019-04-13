@@ -1,4 +1,4 @@
-const debounce = require("../src/debounce.js");
+const debounce = require("../src/utils/debounce.js");
 
 test("Does not throw an error", () => {
   expect(() => debounce(jest.fn(), 1)).not.toThrow();

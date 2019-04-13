@@ -3,7 +3,7 @@ const process = require("child_process");
 const { stdin, stdout } = require("./utils.js");
 
 jest.mock("child_process");
-jest.mock("../src/log.js");
+jest.mock("../src/utils/log.js");
 
 beforeEach(() => {
   process.execFile.mockImplementation((file, args, options, callback) => {

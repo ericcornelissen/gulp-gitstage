@@ -2,9 +2,9 @@ const map = require("map-stream");
 const path = require("path");
 const PluginError = require("plugin-error");
 
-const { pluginTag, types } = require("./constants.js");
 const Git = require("./git.js");
-const log = require("./log.js");
+const { pluginTag, types } = require("./utils/constants.js");
+const log = require("./utils/log.js");
 
 /**
  * Exposes the plugin 'gitstage' to be used in {@link https://gulpjs.com/ Gulp}.

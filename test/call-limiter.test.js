@@ -1,4 +1,4 @@
-const callLimiter = require("../src/call-limiter.js");
+const callLimiter = require("../src/utils/call-limiter.js");
 
 const noop = () => {};
 const SLOW_TIMEOUT = 250;

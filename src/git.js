@@ -1,7 +1,7 @@
-const callLimiter = require("./call-limiter.js");
-const { add, git, types, update } = require("./constants.js");
-const debounce = require("./debounce.js");
-const log = require("./log.js");
+const callLimiter = require("./utils/call-limiter.js");
+const { add, git, types, update } = require("./utils/constants.js");
+const debounce = require("./utils/debounce.js");
+const log = require("./utils/log.js");
 
 const BUFFER_DELAY = 150;
 const DEFAULT_OPTIONS = { env: process.env };
