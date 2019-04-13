@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog], and this project adheres to [Semantic
 Versioning].
 
+## [1.4.1] - 2019-04-13
+
+### Changed
+
+- Abstract dependencies behind local modules. ([#56])
+
+### Security
+
+- Update dependencies.
+
 ## [1.4.0] - 2019-04-11
 
 ### Added
@@ -77,3 +87,4 @@ create a gulp plugin to stage files :tada:
 [#42]: https://github.com/ericcornelissen/gulp-gitstage/pull/42
 [#47]: https://github.com/ericcornelissen/gulp-gitstage/pull/47
 [#48]: https://github.com/ericcornelissen/gulp-gitstage/pull/48
+[#46]: https://github.com/ericcornelissen/gulp-gitstage/pull/46

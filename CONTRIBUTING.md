@@ -118,16 +118,16 @@ $ npm run [name]
 $ npm run test:coverage
 ```
 
-| name            | description                                                    |
-| --------------- | -------------------------------------------------------------- |
-| `clean`         | Remove generated files from your local copy of the repository. |
-| `debug:version` | Obtain version information for debugging purposes.             |
-| `docs:build`    | Build documentation from the in-code documentation.            |
-| `example`       | Run the package using an example `gulpfile.js`.                |
-| `lint`          | Lint the repository using [Prettier].                          |
-| `prettier`      | Run [Prettier] on all (relevant) files in the repository.      |
-| `test`          | Run all test suites for the package.                           |
-| `test:coverage` | Run al test suites and generate a coverage report.             |
+| name             | description                                                    |
+| ---------------- | -------------------------------------------------------------- |
+| `clean`          | Remove generated files from your local copy of the repository. |
+| `debug:versions` | Obtain version information for debugging purposes.             |
+| `docs:build`     | Build documentation from the in-code documentation.            |
+| `example`        | Run the package using an example `gulpfile.js`.                |
+| `lint`           | Lint the repository using [Prettier].                          |
+| `prettier`       | Run [Prettier] on all (relevant) files in the repository.      |
+| `test`           | Run all test suites for the package.                           |
+| `test:coverage`  | Run al test suites and generate a coverage report.             |
 
 [git]: https://git-scm.com/downloads
 [husky]: https://github.com/typicode/husky
