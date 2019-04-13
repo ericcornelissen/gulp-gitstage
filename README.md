@@ -64,6 +64,11 @@ gulp
 ## Help
 
 <details>
+<summary>Contributing to the project</summary>
+Read more in the <a href="\CONTRIBUTING.md">Contributing Guidelines</a> and <a href="\CODE_OF_CONDUCT.md">Code of Conduct</a>.
+</details>
+
+<details>
 <summary>Known errors & solutions</summary>
 
 <b>git not found on your system.</b>
