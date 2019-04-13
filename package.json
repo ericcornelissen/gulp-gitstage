@@ -9,7 +9,7 @@
     "type": "git",
     "url": "https://github.com/ericcornelissen/gulp-gitstage"
   },
-  "homepage": "https://github.com/ericcornelissen/gulp-gitstage",
+  "homepage": "https://github.com/ericcornelissen/gulp-gitstage#readme",
   "bugs": "https://github.com/ericcornelissen/gulp-gitstage/issues",
   "keywords": [
     "gulp plugin",
