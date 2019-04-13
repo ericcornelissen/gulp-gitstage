@@ -55,7 +55,7 @@ $ npm install
 ```
 
 4. <details><summary>Check if everything works</summary>
-   If this command errors, something went wrong while setting up the project. If you cannot figure out why setting up doesn't work (make sure you looked for existing issues) feel free to open a new issue.
+   If this command errors, something went wrong while setting up the project. If you cannot figure out why setting up doesn't work (make sure you checked existing issues) feel free to <a href="https://github.com/ericcornelissen/gulp-gitstage/issues/new?labels=question&template=question.md">open an issue</a>.
    </details>
 
 ```shell
