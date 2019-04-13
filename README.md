@@ -12,7 +12,7 @@
 
 ## Usage
 
-A plugin for Gulp to stage an object stream of git status files on git.
+A plugin for Gulp to stage an object stream of files on git.
 
 First, install `gulp-gitstage` as a development dependency:
 
