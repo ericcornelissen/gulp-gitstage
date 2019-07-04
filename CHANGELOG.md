@@ -88,3 +88,4 @@ create a gulp plugin to stage files :tada:
 [#47]: https://github.com/ericcornelissen/gulp-gitstage/pull/47
 [#48]: https://github.com/ericcornelissen/gulp-gitstage/pull/48
 [#46]: https://github.com/ericcornelissen/gulp-gitstage/pull/46
+[#56]: https://github.com/ericcornelissen/gulp-gitstage/pull/56
