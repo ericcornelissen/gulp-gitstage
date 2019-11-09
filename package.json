@@ -1,6 +1,6 @@
 {
   "name": "gulp-gitstage",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "A plugin for Gulp to stage files in the object stream for git.",
   "main": "./src/index.js",
   "author": "Eric Cornelissen <ericornelissen@gmail.com>",
