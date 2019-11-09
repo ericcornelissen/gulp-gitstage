@@ -101,10 +101,14 @@ describe("git.stage - git succeeds", () => {
   });
 
   test("Gives an error if file is not a string", done => {
-    git.stage(() => true, {}, error => {
-      expect(error).not.toBeNull();
-      done();
-    });
+    git.stage(
+      () => true,
+      {},
+      error => {
+        expect(error).not.toBeNull();
+        done();
+      },
+    );
   });
 
   test("Throws an error if callback is not a function", () => {
@@ -112,22 +116,30 @@ describe("git.stage - git succeeds", () => {
   });
 
   test("Does not attempt to execute git if file is not a string", done => {
-    git.stage(() => true, {}, error => {
-      expect(process.execFile).not.toHaveBeenCalled();
-      done();
-    });
+    git.stage(
+      () => true,
+      {},
+      error => {
+        expect(process.execFile).not.toHaveBeenCalled();
+        done();
+      },
+    );
   });
 
   test("Logs the command it will execute", done => {
-    git.stage(() => true, {}, error => {
-      expect(log.debug).toHaveBeenCalledWith(
-        expect.any(String),
-        expect.any(String),
-        expect.any(String),
-        expect.any(Object),
-      );
-      done();
-    });
+    git.stage(
+      () => true,
+      {},
+      error => {
+        expect(log.debug).toHaveBeenCalledWith(
+          expect.any(String),
+          expect.any(String),
+          expect.any(String),
+          expect.any(Object),
+        );
+        done();
+      },
+    );
   });
 });
 
