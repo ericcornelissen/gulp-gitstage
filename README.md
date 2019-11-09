@@ -47,18 +47,17 @@ listed below. Note that all options are optional.
 #### Examples
 
 ```javascript
-// Stage all files
-gulp.src("./**/*").pipe(gitmodified("added"));
+const gitstage = require("gulp-gitstage");
+
+// Stage all files in the pipe
+gulp.src("./**/*").pipe(gitstage());
 ```
 
 ```javascript
-// Stage previously staged files in case they changed
-const gitmodified = require("gulp-gitmodified");
-gulp
-  .src("./**/*")
-  .pipe(gitmodified("modified"))
-  .pipe(/* edit the file */)
-  .pipe(gitmodified("A"));
+const gitstage = require("gulp-gitstage");
+
+// Stage files only if they're already staged
+gulp.src("./**/*").pipe(gitstage({ stagedOnly: true }));
 ```
 
 ## Help
