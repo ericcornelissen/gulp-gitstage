@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog], and this project adheres to [Semantic
 Versioning].
 
+## [Unreleased]
+
+### Security
+
+- Update dependencies. ([#74], [#75], [#83], [#84])
+
 ## [1.4.1] - 2019-04-13
 
 ### Changed
@@ -89,3 +95,7 @@ create a gulp plugin to stage files :tada:
 [#48]: https://github.com/ericcornelissen/gulp-gitstage/pull/48
 [#46]: https://github.com/ericcornelissen/gulp-gitstage/pull/46
 [#56]: https://github.com/ericcornelissen/gulp-gitstage/pull/56
+[#74]: https://github.com/ericcornelissen/gulp-gitstage/pull/74
+[#75]: https://github.com/ericcornelissen/gulp-gitstage/pull/75
+[#83]: https://github.com/ericcornelissen/gulp-gitstage/pull/83
+[#84]: https://github.com/ericcornelissen/gulp-gitstage/pull/84
