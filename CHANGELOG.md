@@ -5,11 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog], and this project adheres to [Semantic
 Versioning].
 
-## [Unreleased]
+## [1.4.3] - 2020-04-10
 
 ### Security
 
-- Update dependencies. ([#74], [#75], [#83], [#84])
+- Update dependencies. ([#83], [#84])
+
+## [1.4.2] - 2019-11-09
+
+### Security
+
+- Update dependencies. ([#74], [#75])
 
 ## [1.4.1] - 2019-04-13
 
