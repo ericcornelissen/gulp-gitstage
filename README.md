@@ -3,7 +3,7 @@
 [![NPM version][npm-image]][npm-url]
 [![Build status][travisci-image]][travisci-url]
 [![Coverage][codecov-image]][codecov-url]
-[![Dependencies][daviddm-image]][daviddm-url]
+[![Known Vulnerabilities][snyk-image]][snyk-url]
 [![License][license-image]][license-url]
 [![Prettier][prettier-image]][prettier-url]
 
@@ -92,8 +92,8 @@ Read more in the <a href="\CONTRIBUTING.md">Contributing Guidelines</a> and <a h
 [travisci-image]: https://travis-ci.com/ericcornelissen/gulp-gitstage.svg?branch=master
 [codecov-url]: https://codecov.io/gh/ericcornelissen/gulp-gitstage
 [codecov-image]: https://codecov.io/gh/ericcornelissen/gulp-gitstage/branch/master/graph/badge.svg
-[daviddm-url]: https://david-dm.org/ericcornelissen/gulp-gitstage
-[daviddm-image]: https://david-dm.org/ericcornelissen/gulp-gitstage/status.svg
+[snyk-url]: https://snyk.io/test/github/ericcornelissen/gulp-gitstage?targetFile=package.json
+[snyk-image]: https://snyk.io/test/github/ericcornelissen/gulp-gitstage/badge.svg?targetFile=package.json
 [license-url]: https://opensource.org/licenses/MIT
 [license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
 [prettier-url]: https://prettier.io/
