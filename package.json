@@ -28,7 +28,7 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
-    "bottleneck": "^2.17.1",
+    "bottleneck": "^2.19.5",
     "debounce": "^1.2.0",
     "gulplog": "^1.0.0",
     "map-stream": "0.0.7",
