@@ -19,18 +19,19 @@ module.exports = {
 
   /**
    * String denoting the 'add' verb for 'git'. See {@link
-   * https://git-scm.com/docs/git-add the docs}.
+   * https://git-scm.com/docs/git-update-index the docs}. Instead of using the
+   * standard `git add` we use instead `git update-index`, as it is more
+   * powerful.
    * @constant {String}
    */
-  add: "add",
+  add: "update-index",
 
   /**
    * String denoting the 'update' option for the 'add' verb for 'git'. See
-   * {@link https://git-scm.com/docs/git-add#Documentation/git-add.txt--u
-   * the docs}.
+   * {@link https://git-scm.com/docs/git-update-index the docs}.
    * @constant {String}
    */
-  update: "-u",
+  update: "-g",
 
   /* === type names === */
 
