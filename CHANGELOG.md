@@ -5,11 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog], and this project adheres to [Semantic
 Versioning].
 
-## [Unreleased]
+## [1.5.0] - 2020-06-11
 
 ### Fixed
 
 - Make the `stagedOnly` flag work as intended. ([#87])
+
+### Security
+
+- Update dependencies. ([#85], [#86])
 
 ## [1.4.3] - 2020-04-10
 
@@ -111,4 +115,6 @@ create a gulp plugin to stage files :tada:
 [#75]: https://github.com/ericcornelissen/gulp-gitstage/pull/75
 [#83]: https://github.com/ericcornelissen/gulp-gitstage/pull/83
 [#84]: https://github.com/ericcornelissen/gulp-gitstage/pull/84
+[#85]: https://github.com/ericcornelissen/gulp-gitstage/pull/85
+[#86]: https://github.com/ericcornelissen/gulp-gitstage/pull/86
 [#87]: https://github.com/ericcornelissen/gulp-gitstage/pull/87
