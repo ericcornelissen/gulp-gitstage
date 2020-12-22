@@ -7,6 +7,10 @@ Versioning].
 
 ## [Unreleased]
 
+- _No changes yet_
+
+## [1.5.1] - 2020-12-22
+
 ### Security
 
 - Escape shell arguments. ([#95])
