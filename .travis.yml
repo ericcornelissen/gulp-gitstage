@@ -4,7 +4,7 @@ jobs:
       name: "Lint"
       language: node_js
       node_js:
-        - "8.11.0"
+        - "10.13.0"
       install:
         - npm install
       script:
@@ -13,7 +13,7 @@ jobs:
     - name: "Test"
       language: node_js
       node_js:
-        - "8.11.0"
+        - "10.13.0"
       install:
         - npm install
         - npm install -g codecov
