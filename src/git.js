@@ -26,6 +26,7 @@ let _available = null;
  */
 function gitExecute(args, _options, callback) {
   const exec = require("child_process").execFile;
+  const escapeAll = require("shescape").escapeAll;
 
   if (!isGitAvailable()) {
     throw new Error("git not found on your system.");
@@ -38,7 +39,7 @@ function gitExecute(args, _options, callback) {
   log.debug("running '%s %s', options %O", git, args.join(" "), runOption);
 
   const options = Object.assign(DEFAULT_OPTIONS, runOption);
-  return limiter.schedule(exec, git, args, options, callback);
+  return limiter.schedule(exec, git, escapeAll(args), options, callback);
 }
 
 /**
