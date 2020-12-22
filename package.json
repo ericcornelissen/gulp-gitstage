@@ -23,7 +23,7 @@
     "docs:build": "jsdoc src/ -d _docs",
     "example": "gulp --gulpfile test/fixtures/gulpfile.js -LLLL",
     "lint": "prettier **/*.{js,md} --check",
-    "postinstall": "husky install scripts/hooks",
+    "postinstall": "is-ci || husky install scripts/hooks",
     "prettier": "prettier **/*.{js,md} --write",
     "test": "jest",
     "test:coverage": "jest --coverage"
@@ -42,6 +42,7 @@
     "codecov": "^3.7.1",
     "gulp": "^4.0.0",
     "husky": "^5.0.6",
+    "is-ci": "^2.0.0",
     "jest": "^24.9.0",
     "jsdoc": "^3.6.3",
     "prettier": "^1.19.1",
