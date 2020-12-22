@@ -36,6 +36,7 @@
     "gulplog": "^1.0.0",
     "map-stream": "0.1.0",
     "plugin-error": "^1.0.1",
+    "shescape": "^1.1.0",
     "which": "~2.0.2"
   },
   "devDependencies": {

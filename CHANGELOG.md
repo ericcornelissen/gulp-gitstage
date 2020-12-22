@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog], and this project adheres to [Semantic
 Versioning].
 
+## [Unreleased]
+
+### Security
+
+- Escape shell arguments. ([#95])
+
 ## [1.5.0] - 2020-06-11
 
 ### Fixed
@@ -118,3 +124,4 @@ create a gulp plugin to stage files :tada:
 [#85]: https://github.com/ericcornelissen/gulp-gitstage/pull/85
 [#86]: https://github.com/ericcornelissen/gulp-gitstage/pull/86
 [#87]: https://github.com/ericcornelissen/gulp-gitstage/pull/87
+[#95]: https://github.com/ericcornelissen/gulp-gitstage/pull/95
