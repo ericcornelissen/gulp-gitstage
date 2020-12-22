@@ -24,6 +24,8 @@
     "example": "gulp --gulpfile test/fixtures/gulpfile.js -LLLL",
     "lint": "prettier **/*.{js,md} --check",
     "postinstall": "is-ci || husky install scripts/hooks",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable",
     "prettier": "prettier **/*.{js,md} --write",
     "test": "jest",
     "test:coverage": "jest --coverage"
@@ -45,6 +47,7 @@
     "is-ci": "^2.0.0",
     "jest": "^24.9.0",
     "jsdoc": "^3.6.3",
+    "pinst": "^2.1.1",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.0"
   },
