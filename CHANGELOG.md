@@ -9,6 +9,12 @@ Versioning].
 
 - _No changes yet_
 
+## [1.5.2] - 2021-03-19
+
+### Security
+
+- Update vulnerable `shescape` version. ([#96])
+
 ## [1.5.1] - 2020-12-22
 
 ### Security
@@ -129,3 +135,4 @@ create a gulp plugin to stage files :tada:
 [#86]: https://github.com/ericcornelissen/gulp-gitstage/pull/86
 [#87]: https://github.com/ericcornelissen/gulp-gitstage/pull/87
 [#95]: https://github.com/ericcornelissen/gulp-gitstage/pull/95
+[#96]: https://github.com/ericcornelissen/gulp-gitstage/pull/96
