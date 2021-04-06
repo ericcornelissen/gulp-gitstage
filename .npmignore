@@ -5,7 +5,6 @@
 .huskyrc
 .prettierrc
 .prettierignore
-.travis.yml
 commitlint.config.js
 jest.config.js
 

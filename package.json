@@ -55,8 +55,5 @@
   "engines": {
     "node": ">=10.13.0",
     "npm": ">=5.6.0"
-  },
-  "greenkeeper": {
-    "label": "dependencies"
   }
 }

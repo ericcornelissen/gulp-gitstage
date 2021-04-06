@@ -1,7 +1,7 @@
 # gulp-gitstage
 
 [![NPM version][npm-image]][npm-url]
-[![Build status][travisci-image]][travisci-url]
+[![Build status][build-image]][build-url]
 [![Coverage][codecov-image]][codecov-url]
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![License][license-image]][license-url]
@@ -88,8 +88,8 @@ Read more in the <a href="\CONTRIBUTING.md">Contributing Guidelines</a> and <a h
 
 [npm-url]: https://npmjs.org/package/gulp-gitstage
 [npm-image]: https://badge.fury.io/js/gulp-gitstage.png
-[travisci-url]: http://travis-ci.com/ericcornelissen/gulp-gitstage
-[travisci-image]: https://travis-ci.com/ericcornelissen/gulp-gitstage.svg?branch=master
+[build-url]: https://github.com/ericcornelissen/gulp-gitstage/actions/workflows/push-checks.yml
+[build-image]: https://github.com/ericcornelissen/gulp-gitstage/actions/workflows/push-checks.yml/badge.svg
 [codecov-url]: https://codecov.io/gh/ericcornelissen/gulp-gitstage
 [codecov-image]: https://codecov.io/gh/ericcornelissen/gulp-gitstage/branch/master/graph/badge.svg
 [snyk-url]: https://snyk.io/test/github/ericcornelissen/gulp-gitstage?targetFile=package.json
