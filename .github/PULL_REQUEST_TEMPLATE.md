@@ -4,7 +4,7 @@
 
 - [ ] I tested the change(s) in this Pull Request
 - [ ] I documented the change(s) in this Pull Request
-- [ ] I added the change(s) to the [changelog](https://github.com/ericcornelissen/gulp-gitstage/blob/master/CHANGELOG.md)
+- [ ] I added the change(s) to the [changelog](https://github.com/ericcornelissen/gulp-gitstage/blob/main/CHANGELOG.md)
 
 ### Issues
 

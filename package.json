@@ -22,11 +22,11 @@
     "debug:versions": "node scripts/versions.js",
     "docs:build": "jsdoc src/ -d _docs",
     "example": "gulp --gulpfile test/fixtures/gulpfile.js -LLLL",
-    "lint": "prettier **/*.{js,md} --check",
+    "lint": "prettier **/*.{md,js,yml} --check --ignore-path .gitignore",
     "postinstall": "is-ci || husky install scripts/hooks",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable",
-    "prettier": "prettier **/*.{js,md} --write",
+    "prettier": "prettier **/*.{md,js,yml} --write --ignore-path .gitignore",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },

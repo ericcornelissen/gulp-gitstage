@@ -71,7 +71,7 @@ following steps. Make sure to review the [project details](#project-details)
 to get to know some specifics about contributing to this project.
 
 1. Set up a local copy of the project, as [described above](#setting-up)
-1. Create a new branch from the latest `master` (read more [here](https://guides.github.com/introduction/flow/))
+1. Create a new branch from the latest `main` (read more [here](https://guides.github.com/introduction/flow/))
 1. Start hacking on the new branch
 1. Commit and push to the new branch
 1. Make a pull request (read more [here](https://guides.github.com/activities/forking/#making-a-pull-request))

@@ -1,0 +1,7 @@
+name: gulp-gitstage CodeQL config
+
+queries:
+  - uses: security-extended
+
+paths:
+  - src/

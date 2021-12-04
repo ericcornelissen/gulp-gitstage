@@ -91,7 +91,7 @@ Read more in the <a href="\CONTRIBUTING.md">Contributing Guidelines</a> and <a h
 [build-url]: https://github.com/ericcornelissen/gulp-gitstage/actions/workflows/push-checks.yml
 [build-image]: https://github.com/ericcornelissen/gulp-gitstage/actions/workflows/push-checks.yml/badge.svg
 [codecov-url]: https://codecov.io/gh/ericcornelissen/gulp-gitstage
-[codecov-image]: https://codecov.io/gh/ericcornelissen/gulp-gitstage/branch/master/graph/badge.svg
+[codecov-image]: https://codecov.io/gh/ericcornelissen/gulp-gitstage/branch/main/graph/badge.svg
 [snyk-url]: https://snyk.io/test/github/ericcornelissen/gulp-gitstage?targetFile=package.json
 [snyk-image]: https://snyk.io/test/github/ericcornelissen/gulp-gitstage/badge.svg?targetFile=package.json
 [license-url]: https://opensource.org/licenses/MIT

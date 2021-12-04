@@ -1,20 +1,9 @@
-# configuration files
-.codecov.yml
-.editorconfig
-.gitattributes
-.huskyrc
-.prettierrc
-.prettierignore
-commitlint.config.js
-jest.config.js
+# Ignore all files
+/*
 
-# project directories & files
-.github/
-scripts/
-test/
-CODE_OF_CONDUCT.md
-CONTRIBUTING.md
-
-# generated files
-_reports/
-_docs/
+# Except the ones we want to publish
+!src/
+!CHANGELOG.md
+!package.json
+!LICENSE
+!README.md
