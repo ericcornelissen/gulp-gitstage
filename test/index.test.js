@@ -18,6 +18,8 @@ test("The plugin returns a stream", () => {
 
 describe("Successful execution", () => {
   test("Stage at least one file on git", done => {
+    let calledDone = false;
+
     gulp
       .src(files)
       .pipe(gitstage())
@@ -25,13 +27,16 @@ describe("Successful execution", () => {
       .pipe(
         each(() => {
           expect(process.execFile).toHaveBeenCalled();
-          done();
+          if (!calledDone) {
+            calledDone = true;
+            done();
+          }
         }),
       );
   });
 
   test("Makes a call to execute 'git'", done => {
-    let fileList = [];
+    let calledDone = false;
 
     gulp
       .src(files)
@@ -46,12 +51,16 @@ describe("Successful execution", () => {
             expect.anything(),
           );
 
-          done();
+          if (!calledDone) {
+            calledDone = true;
+            done();
+          }
         }),
       );
   });
 
   test("Stages all files in the stream", done => {
+    let calledDone = false;
     let fileList = [];
 
     gulp
@@ -70,7 +79,10 @@ describe("Successful execution", () => {
             );
           }
 
-          done();
+          if (!calledDone) {
+            calledDone = true;
+            done();
+          }
         }),
       );
   });
@@ -101,36 +113,53 @@ describe("Unsuccessful execution", () => {
   });
 
   test("Emits an error if the file could not be added", done => {
+    let calledDone = false;
+
     gulp
       .src(files)
       .pipe(gitstage())
       .on("error", () => {
-        done();
+        if (!calledDone) {
+          calledDone = true;
+          done();
+        }
       });
   });
 
   test("The error message is derived from the git error", done => {
+    let calledDone = false;
+
     gulp
       .src(files)
       .pipe(gitstage())
       .on("error", error => {
         expect(error.message).toMatch(gitErrorLevel);
         expect(error.message).toMatch(gitErrorMessage);
-        done();
+
+        if (!calledDone) {
+          calledDone = true;
+          done();
+        }
       });
   });
 
   test("Logs an error in verbose mode", done => {
+    let calledDone = false;
+
     gulp
       .src(files)
       .pipe(gitstage())
-      .on("error", error => {
+      .on("error", () => {
         expect(log.debug).toHaveBeenCalledWith(
           expect.stringContaining("failed"),
           expect.any(String),
           expect.anything(),
         );
-        done();
+
+        if (!calledDone) {
+          calledDone = true;
+          done();
+        }
       });
   });
 
@@ -141,7 +170,9 @@ describe("Unsuccessful execution", () => {
 
 describe("Configuration", () => {
   test("The 'gitCwd' option is used", done => {
+    let calledDone = false;
     let customCwd = "../foo";
+
     gulp
       .src(files)
       .pipe(
@@ -161,7 +192,10 @@ describe("Configuration", () => {
             expect.anything(),
           );
 
-          done();
+          if (!calledDone) {
+            calledDone = true;
+            done();
+          }
         }),
       );
   });
@@ -173,6 +207,8 @@ describe("Configuration", () => {
   });
 
   test("The 'stagedOnly' option is used when true", done => {
+    let calledDone = false;
+
     gulp
       .src(files)
       .pipe(
@@ -190,12 +226,17 @@ describe("Configuration", () => {
             expect.anything(),
           );
 
-          done();
+          if (!calledDone) {
+            calledDone = true;
+            done();
+          }
         }),
       );
   });
 
   test("The 'stagedOnly' option is not used when false", done => {
+    let calledDone = false;
+
     gulp
       .src(files)
       .pipe(
@@ -217,12 +258,17 @@ describe("Configuration", () => {
             console.log(e);
           }
 
-          done();
+          if (!calledDone) {
+            calledDone = true;
+            done();
+          }
         }),
       );
   });
 
   test("The 'stagedOnly' option is not used by default", done => {
+    let calledDone = false;
+
     gulp
       .src(files)
       .pipe(gitstage())
@@ -240,7 +286,10 @@ describe("Configuration", () => {
             console.log(e);
           }
 
-          done();
+          if (!calledDone) {
+            calledDone = true;
+            done();
+          }
         }),
       );
   });

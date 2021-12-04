@@ -26,16 +26,17 @@ describe("Debouncing", () => {
     debouncedFn = debounce(fn, timeout);
   });
 
-  test("Executes the function only once", () => {
+  test("Executes the function only once", done => {
     debouncedFn();
     debouncedFn();
 
     setTimeout(() => {
       expect(fn).toHaveBeenCalledTimes(1);
-    }, timeout);
+      done();
+    }, timeout * 10);
   });
 
-  test("Executes the last call to the function", () => {
+  test("Executes the last call to the function", done => {
     const message = "Hello world!";
 
     debouncedFn("foo");
@@ -44,23 +45,21 @@ describe("Debouncing", () => {
 
     setTimeout(() => {
       expect(fn).toHaveBeenCalledWith(message);
-    }, timeout);
+      done();
+    }, timeout * 10);
   });
 
-  test("Executes the function again after the specified timeout", () => {
-    const message = "Hello world!";
-
+  test("Executes the function again after the specified timeout", done => {
     debouncedFn();
     setTimeout(debouncedFn, timeout * 2);
 
     setTimeout(() => {
       expect(fn).toHaveBeenCalledTimes(2);
-    }, timeout * 3);
+      done();
+    }, timeout * 10);
   });
 
-  test("Executes the function only once after the specified timeout", () => {
-    const message = "Hello world!";
-
+  test("Executes the function only once after the specified timeout", done => {
     debouncedFn();
     debouncedFn();
     setTimeout(() => {
@@ -70,6 +69,7 @@ describe("Debouncing", () => {
 
     setTimeout(() => {
       expect(fn).toHaveBeenCalledTimes(2);
-    }, timeout * 3);
+      done();
+    }, timeout * 10);
   });
 });
