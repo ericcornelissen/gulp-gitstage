@@ -42,7 +42,6 @@
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
     "@commitlint/config-conventional": "^8.1.0",
-    "codecov": "^3.7.1",
     "gulp": "^4.0.2",
     "husky": "^5.0.6",
     "is-ci": "^3.0.1",
