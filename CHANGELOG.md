@@ -7,7 +7,7 @@ Versioning].
 
 ## [Unreleased]
 
-- _No changes yet_
+- Update dependencies. ([#108])
 
 ## [1.5.2] - 2021-03-19
 
@@ -136,3 +136,4 @@ create a gulp plugin to stage files :tada:
 [#87]: https://github.com/ericcornelissen/gulp-gitstage/pull/87
 [#95]: https://github.com/ericcornelissen/gulp-gitstage/pull/95
 [#96]: https://github.com/ericcornelissen/gulp-gitstage/pull/96
+[#108]: https://github.com/ericcornelissen/gulp-gitstage/pull/108
