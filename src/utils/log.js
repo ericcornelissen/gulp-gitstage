@@ -14,7 +14,7 @@ module.exports = {
    * debug("Hello %s!", "world");
    * // -> [gulp-gitstage] Hello world!
    */
-  debug: function(message, ...args) {
+  debug: function (message, ...args) {
     log.debug(`[${pluginTag}] ${message}`, ...args);
   },
 };

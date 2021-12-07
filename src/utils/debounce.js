@@ -12,7 +12,7 @@ const { types } = require("./constants.js");
  * debouncedLog("bar");
  * // -> "bar"
  */
-module.exports = function(fn, timeout) {
+module.exports = function (fn, timeout) {
   const debounce = require("debounce");
 
   if (typeof fn !== types.function) {

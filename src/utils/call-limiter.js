@@ -12,7 +12,7 @@ module.exports = {
    * const limiter = new({concurrency: 1});
    * limiter.schedule(fn, arg1, arg2, ..., argN, callback);
    */
-  new: function({ concurrency }) {
+  new: function ({ concurrency }) {
     const Bottleneck = require("bottleneck");
     const limiter = new Bottleneck({ maxConcurrent: concurrency });
 
@@ -27,7 +27,7 @@ module.exports = {
        * @example
        * schedule(fn, arg1, arg2, callback);
        */
-      schedule: function(fn, ...args) {
+      schedule: function (fn, ...args) {
         limiter.submit.call(limiter, fn, ...args);
       },
     };

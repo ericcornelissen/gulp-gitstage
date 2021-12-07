@@ -58,7 +58,7 @@ function getStageBufferForStream(id) {
     const callbacks = [];
     const files = [];
 
-    const db = debounce(function(options) {
+    const db = debounce(function (options) {
       STAGE_BUFFERS[id] = undefined;
       log.debug("staging files for %f: %O", id, files);
 
@@ -74,7 +74,7 @@ function getStageBufferForStream(id) {
     }, BUFFER_DELAY);
 
     STAGE_BUFFERS[id] = {
-      push: function(file, options, callback) {
+      push: function (file, options, callback) {
         callbacks.push(callback);
         files.push(file);
         db(options);
@@ -109,7 +109,7 @@ function isGitAvailable() {
  * const Git = require('path/to/git.js');
  * const git = new Git();
  */
-module.exports = function() {
+module.exports = function () {
   const id = Math.random();
 
   /**
@@ -131,7 +131,7 @@ module.exports = function() {
    *  }
    * });
    */
-  this.stage = function(file, options, callback) {
+  this.stage = function (file, options, callback) {
     if (typeof file !== types.string) {
       callback("file must be a string.");
     } else if (typeof callback !== types.function) {
