@@ -17,7 +17,7 @@ const log = require("./utils/log.js");
  * @param  {Boolean} [stagedOnly=false] - Only stage previously staged files.
  * @return {Stream} Identity file stream, does not modify the input.
  */
-module.exports = function(options = {}) {
+module.exports = function (options = {}) {
   const git = new Git();
 
   log.debug("creating stream, options: %O", options);

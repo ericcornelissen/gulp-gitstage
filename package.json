@@ -48,7 +48,7 @@
     "jest": "^27.4.3",
     "jsdoc": "^3.6.7",
     "pinst": "^2.1.6",
-    "prettier": "^1.19.1",
+    "prettier": "^2.5.1",
     "pretty-quick": "^2.0.0"
   },
   "engines": {

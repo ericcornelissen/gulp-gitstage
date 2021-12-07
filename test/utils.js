@@ -4,14 +4,14 @@ module.exports = {
   stdin: "stdin",
   stdout: "stdout",
 
-  each: function(eachCallback) {
+  each: function (eachCallback) {
     return map((file, mapCallback) => {
       mapCallback(null, file);
       eachCallback(file);
     });
   },
 
-  reduce: function() {
+  reduce: function () {
     let started = false;
     return map((file, callback) => {
       if (!started) {

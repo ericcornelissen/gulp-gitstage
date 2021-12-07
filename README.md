@@ -26,7 +26,7 @@ const gitstage = require("gulp-gitstage");
 
 const files = gulp.src("./src/*.ext").pipe(gitstage());
 
-files.on("data", function(file) {
+files.on("data", function (file) {
   console.log("Staged file:", file);
 });
 ```

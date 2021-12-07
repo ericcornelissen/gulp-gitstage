@@ -10,11 +10,11 @@ beforeEach(() => {
   // of functions offered by the API
   const getCallback = args => args[args.length - 1];
 
-  instantSpy = jest.fn(function() {
+  instantSpy = jest.fn(function () {
     const callback = getCallback(arguments);
     callback();
   });
-  slowSpy = jest.fn(function() {
+  slowSpy = jest.fn(function () {
     const callback = getCallback(arguments);
     setTimeout(callback, SLOW_TIMEOUT);
   });
