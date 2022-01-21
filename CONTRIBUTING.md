@@ -122,7 +122,6 @@ $ npm run test:coverage
 | ---------------- | -------------------------------------------------------------- |
 | `clean`          | Remove generated files from your local copy of the repository. |
 | `debug:versions` | Obtain version information for debugging purposes.             |
-| `docs:build`     | Build documentation from the in-code documentation.            |
 | `example`        | Run the package using an example `gulpfile.js`.                |
 | `lint`           | Lint the repository using [Prettier].                          |
 | `prettier`       | Run [Prettier] on all (relevant) files in the repository.      |

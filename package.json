@@ -18,9 +18,8 @@
     "git add"
   ],
   "scripts": {
-    "clean": "rimraf ./_docs ./_reports",
+    "clean": "rimraf ./_reports",
     "debug:versions": "node scripts/versions.js",
-    "docs:build": "jsdoc src/ -d _docs",
     "example": "gulp --gulpfile test/fixtures/gulpfile.js -LLLL",
     "lint": "prettier **/*.{md,js,yml} --check --ignore-path .gitignore",
     "prepare": "is-ci || husky install scripts/hooks",
@@ -44,7 +43,6 @@
     "husky": "^7.0.4",
     "is-ci": "^3.0.1",
     "jest": "^27.4.3",
-    "jsdoc": "^3.6.7",
     "prettier": "^2.5.1",
     "pretty-quick": "^3.1.2"
   },
